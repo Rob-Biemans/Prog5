@@ -20,7 +20,7 @@ namespace Eindopdracht
             this.Inventory = new HashSet<Equipment>();
         }
     
-        public int Id { get; set; }
+        public int Currency { get; set; }
         public string Name { get; set; }
         public string Skills { get; set; }
     

@@ -8,16 +8,16 @@ namespace Eindopdracht.Model
 {
     class Equipment
     {
-        public int ID { get; set; }
-        public string category { get; set; }
-        public string name { get; set; }
-        public int price { get; set; }
-        public Nullable<int> ninjaID { get; set; }
+        public int Id { get; set; }
+        public string Category { get; set; }
+        public string Name { get; set; }
+        public int Price { get; set; }
+        public Nullable<int> NinjaId { get; set; }
 
-        public int agility { get; set; }
-        public int strenght { get; set; }
-        public int intelligence { get; set; }
+        public int Agility { get; set; }
+        public int Strenght { get; set; }
+        public int Intelligence { get; set; }
 
-        public virtual Ninja ninja { get; set; }
+        public virtual Ninja Ninja { get; set; }
     }
 }
