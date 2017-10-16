@@ -5,7 +5,7 @@ using Eindopdracht.Model;
 
 namespace Eindopdracht.ViewModel
 {
-    class ViewModelLocator
+    public class ViewModelLocator
     {
         static ViewModelLocator()
         {
@@ -19,6 +19,30 @@ namespace Eindopdracht.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<NinjaListViewModel>();
+            }
+        }
+
+        public EditNinjaViewModel UpdateNinja
+        {
+            get
+            {
+                return new EditNinjaViewModel(NinjaList.SelectedNinja);
+            }
+        }
+
+        public AddNinjaViewModel AddNinja
+        {
+            get
+            { 
+                return new AddNinjaViewModel(this.NinjaList);
+            }
+        }
+
+        public ViewNinjaViewModel ViewNinja
+        {
+            get
+            {
+                return new ViewNinjaViewModel(NinjaList.SelectedNinja);
             }
         }
 

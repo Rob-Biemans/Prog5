@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Eindopdracht.Model
 {
-    class Equipment
+    public class Equipment
     {
         public int Id { get; set; }
         public string Category { get; set; }

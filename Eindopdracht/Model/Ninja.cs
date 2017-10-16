@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Eindopdracht.Model
 {
-    class Ninja
+    public class Ninja
     {
         public Ninja()
         {
