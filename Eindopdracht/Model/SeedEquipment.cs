@@ -12,10 +12,30 @@ namespace Eindopdracht.Model
         {
             var equipments = new List<Equipment>();
 
-            equipments.Add(new Equipment { Id = 1, Name = "Madonna", Summary = "Holiday", NinjaId = 1 });
-            equipments.Add(new Equipment { Id = 2, Name = "Prince", Summary = "1999", NinjaId = 1 });
-            equipments.Add(new Equipment { Id = 3, Name = "Michael Jackson", Summary = "Billy Jean", NinjaId = 1 });
-            equipments.Add(new Equipment { Id = 4, Name = "U2", Summary = "One", NinjaId = 1 });
+            equipments.Add(new Equipment { ID = 1, name = "Bronze", price = 200, category = "Shoulders" });
+            equipments.Add(new Equipment { ID = 2, name = "Iron", price = 800, category = "Shoulders" });
+            equipments.Add(new Equipment { ID = 3, name = "Gold", price = 1200, category = "Shoulders" });
+            equipments.Add(new Equipment { ID = 4, name = "Platinum", price = 1400, category = "Shoulders" });
+
+            equipments.Add(new Equipment { ID = 1, name = "Bronze", price = 200, category = "Chest" });
+            equipments.Add(new Equipment { ID = 2, name = "Iron", price = 800, category = "Chest" });
+            equipments.Add(new Equipment { ID = 3, name = "Gold", price = 1200, category = "Chest" });
+            equipments.Add(new Equipment { ID = 4, name = "Platinum", price = 1400, category = "Chest" });
+
+            equipments.Add(new Equipment { ID = 1, name = "Bronze", price = 200, category = "Belt" });
+            equipments.Add(new Equipment { ID = 2, name = "Iron", price = 800, category = "Belt" });
+            equipments.Add(new Equipment { ID = 3, name = "Gold", price = 1200, category = "Belt" });
+            equipments.Add(new Equipment { ID = 4, name = "Platinum", price = 1400, category = "Belt" });
+
+            equipments.Add(new Equipment { ID = 1, name = "Bronze", price = 200, category = "Legs" });
+            equipments.Add(new Equipment { ID = 2, name = "Iron", price = 800, category = "Legs" });
+            equipments.Add(new Equipment { ID = 3, name = "Gold", price = 1200, category = "Legs" });
+            equipments.Add(new Equipment { ID = 4, name = "Platinum", price = 1400, category = "Legs" });
+
+            equipments.Add(new Equipment { ID = 1, name = "Bronze", price = 200, category = "Boots" });
+            equipments.Add(new Equipment { ID = 2, name = "Iron", price = 800, category = "Boots" });
+            equipments.Add(new Equipment { ID = 3, name = "Gold", price = 1200, category = "Boots" });
+            equipments.Add(new Equipment { ID = 4, name = "Platinum", price = 1400, category = "Boots" });
 
             return equipments;
         }
