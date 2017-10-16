@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Ninjas" Height="350" Width="525">
     <Grid>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Width="462">
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Width="462" Height="238">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="#" Binding="{Binding Id}" Foreground="#FF1D1616" />
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Foreground="#FF1D1616" />
@@ -15,7 +15,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock x:Name="txtTitel" HorizontalAlignment="Left" Margin="10,12,0,0" TextWrapping="Wrap" Text="Ninja collection" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
-        <Button x:Name="btnAdd" Content="+" HorizontalAlignment="Left" Margin="477,10,0,0" VerticalAlignment="Top" Width="30" Height="30"/>
+        <Button x:Name="btnAdd" Content="+" HorizontalAlignment="Left" Margin="472,13,0,0" VerticalAlignment="Top" Width="30" Height="30"/>
 
     </Grid>
 </Window>
