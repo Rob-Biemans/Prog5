@@ -17,9 +17,9 @@ namespace Eindopdracht.View
     /// <summary>
     /// Interaction logic for AddNinjaWindow.xaml
     /// </summary>
-    public partial class AddNinjaWindow : Window
+    public partial class ShopWindow : Window
     {
-        public AddNinjaWindow()
+        public ShopWindow()
         {
             InitializeComponent();
         }

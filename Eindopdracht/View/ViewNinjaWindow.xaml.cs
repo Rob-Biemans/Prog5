@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Eindopdracht.View
 {
     /// <summary>
-    /// Interaction logic for AddNinjaWindow.xaml
+    /// Interaction logic for ViewNinjaWindow.xaml
     /// </summary>
-    public partial class AddNinjaWindow : Window
+    public partial class ViewNinjaWindow : Window
     {
-        public AddNinjaWindow()
+        public ViewNinjaWindow()
         {
             InitializeComponent();
         }

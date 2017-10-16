@@ -101,6 +101,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\AddNinjaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ShopWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -108,10 +112,6 @@
     <Page Include="View\ViewNinjaWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\AddNinjaWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EditNinjaWindow.xaml">
       <SubType>Designer</SubType>
@@ -161,14 +161,14 @@
     <Compile Include="ViewModel\NinjaListViewModel.cs" />
     <Compile Include="ViewModel\NinjaViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\AddNinjaWindow.xaml.cs">
+      <DependentUpon>AddNinjaWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ShopWindow.xaml.cs">
       <DependentUpon>ShopWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewNinjaWindow.xaml.cs">
       <DependentUpon>ViewNinjaWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\AddNinjaWindow.xaml.cs">
-      <DependentUpon>AddNinjaWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EditNinjaWindow.xaml.cs">
       <DependentUpon>EditNinjaWindow.xaml</DependentUpon>
