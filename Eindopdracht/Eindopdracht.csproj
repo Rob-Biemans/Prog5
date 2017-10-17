@@ -244,6 +244,7 @@
       <DependentUpon>Entities.edmx</DependentUpon>
       <LastGenOutput>Entities.cs</LastGenOutput>
     </Content>
+    <Resource Include="Images\ninja.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

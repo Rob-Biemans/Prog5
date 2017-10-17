@@ -5,16 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eindopdracht.View"
         mc:Ignorable="d"
-        Title="My profile" Height="300" Width="300"
+        Title="My profile" Height="372.527" Width="390.659"
         DataContext="{Binding ViewNinja, Source={StaticResource Locator}}">
     <Border BorderThickness="12">
         <StackPanel>
+            <StackPanel.Background>
+                <ImageBrush ImageSource="/Eindopdracht;component/Images/ninja.png" Stretch="None" />
+            </StackPanel.Background>
             <TextBlock Text="Name: " Margin="0,0,218,0" />
             <TextBlock x:Name="txtTitel" HorizontalAlignment="Left" Margin="50,10,0,0" TextWrapping="Wrap" Text="{Binding Ninja.Name, Mode=TwoWay}" VerticalAlignment="Top" FontSize="28"/>
 
-            <TextBlock Margin="0,5,0,0"  ><Run Text="Currency: "/><Run Text=" "/><InlineUIContainer>
+            <TextBlock Margin="0,5,0,0"  ><Run Text="Gear Value: "/>
+                <InlineUIContainer>
                     <TextBlock Text="{Binding Ninja.Currency, Mode=TwoWay}" Margin="0,5,0,0"  Width="212"  />
-                </InlineUIContainer></TextBlock>
+                </InlineUIContainer>
+            </TextBlock>
+
+            <TextBlock>
+                <TextBlock Text="Strength: "></TextBlock>
+                <TextBlock Text="Agility: "></TextBlock>
+                <TextBlock Text="Intelligence: "></TextBlock>
+            </TextBlock>
         </StackPanel>
     </Border>
 
