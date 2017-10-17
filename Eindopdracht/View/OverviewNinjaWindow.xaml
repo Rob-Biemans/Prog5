@@ -45,6 +45,7 @@
                 </DataGrid>
                 <TextBlock x:Name="txtTitel" HorizontalAlignment="Left" Margin="10,12,0,0" TextWrapping="Wrap" Text="Ninja collection" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
                 <Button x:Name="btnAdd" Content="+" HorizontalAlignment="Center" Margin="477,10,0,0" VerticalAlignment="Top" Width="30" Height="30" Command="{Binding ShowAddNinjaCommand}" Background="#FF44AE3F" Foreground="White" FontWeight="Bold" FontSize="18" />
+
                 <Button x:Name="button" Command="{Binding ShowViewEquipmentCommand}" Content="Button" HorizontalAlignment="Left" Margin="290,14,0,0" VerticalAlignment="Top" Width="75"/>
 
             </Grid>

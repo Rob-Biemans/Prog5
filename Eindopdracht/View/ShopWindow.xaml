@@ -5,8 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eindopdracht.View"
         mc:Ignorable="d"
-        Title="My profile" Height="300" Width="300">
-    <Grid>
-        
-    </Grid>
+        Title="The Shop" Height="300" Width="462.363">
+    <Border>
+        <StackPanel>
+            <StackPanel>
+                <TextBlock x:Name="txtTitel" HorizontalAlignment="Left" Margin="10,12,0,0" TextWrapping="Wrap" Text="The Shop" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
+            </StackPanel>
+            <DockPanel Height="235">
+                <DockPanel DockPanel.Dock="Left" Width="120">
+                    <!-- Categorieen -->
+                    <ListView>
+                        <ListViewItem>
+                            <TextBlock Text="Helm"/>
+                        </ListViewItem>
+                    </ListView>
+                </DockPanel>
+                <DockPanel DockPanel.Dock="Left" Width="120">
+                    <!-- Items -->
+                    <ListView>
+                        <ListViewItem>
+                            <TextBlock Text="Bronze Helm"/>
+                        </ListViewItem>
+                    </ListView>
+                </DockPanel>
+                <DockPanel DockPanel.Dock="Left" Width="auto">
+                    <!-- Selected Item -->
+                    <ListView>
+                        <ListViewItem>
+                            <TextBlock Text="Bronze Helm"/>
+                        </ListViewItem>
+                        <Button x:Name="btnBuy" Content="BUY" Height="30" VerticalAlignment="Top" Width="50"/>
+                        <TextBlock  VerticalAlignment="Bottom" Text="You have xxx gold left"/>
+                    </ListView>
+                </DockPanel>
+            </DockPanel>
+        </StackPanel>
+    </Border>
 </Window>
