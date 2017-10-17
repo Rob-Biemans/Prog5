@@ -5,8 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eindopdracht.View"
         mc:Ignorable="d"
-        Title="EditNinjaWindow" Height="300" Width="300">
-    <Grid>
-        
-    </Grid>
+        Title="EditNinjaWindow" Height="300" Width="300"
+        DataContext="{Binding UpdateNinja, Source={StaticResource Locator}}">
+
+    <Border BorderThickness="12">
+        <StackPanel>
+
+            <TextBlock x:Name="txtTitel" HorizontalAlignment="Left" Margin="27,10,0,0" TextWrapping="Wrap" Text="Edit Ninja" VerticalAlignment="Top" FontSize="28"/>
+
+            <TextBlock Text="Id:" Margin="0,5,0,0"  />
+            <TextBox MaxLength="5" Text="{Binding Ninja.Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+
+            <TextBlock Text="Name:" Margin="0,5,0,0"  />
+            <TextBox Text="{Binding Ninja.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+
+            <TextBlock Text="Currency:" Margin="0,5,0,0"  />
+            <TextBox Text="{Binding Ninja.Currency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+        </StackPanel>
+    </Border>
+
 </Window>

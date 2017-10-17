@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Eindopdracht.ViewModel
 {
-    class InventoryViewModel : ViewModelBase
+    public class InventoryViewModel : ViewModelBase
     {
 
     }

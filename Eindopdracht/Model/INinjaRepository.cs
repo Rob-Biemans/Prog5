@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Eindopdracht.Model
 {
-    interface IEquipmentRepository
+    interface INinjaRepository
     {
-        List<Equipment> GetEquipment();
+        List<Ninja> GetNinjas();
     }
 }

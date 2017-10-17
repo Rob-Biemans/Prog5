@@ -3,13 +3,13 @@ using Eindopdracht.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Eindopdracht.ViewModel
+namespace Eindopdracht.Model
 {
-    class NinjaViewModel : ViewModelBase
+    public class NinjaViewModel : ViewModelBase
     {
         public int Id
         {
-            get { return _ninja.Currency; }
+            get { return _ninja.Id; }
             set { _ninja.Currency = value; RaisePropertyChanged("Id"); }
         }
 
@@ -34,5 +34,6 @@ namespace Eindopdracht.ViewModel
         {
             this._ninja = ninja;
         }
+
     }
 }
