@@ -22,9 +22,15 @@
             </TextBlock>
 
             <TextBlock>
-                <TextBlock Text="Strength: "></TextBlock>
-                <TextBlock Text="Agility: "></TextBlock>
-                <TextBlock Text="Intelligence: "></TextBlock>
+                <TextBlock Text="Strength: ">
+                    <TextBlock Text="{Binding Ninja.Strength}"></TextBlock>
+                </TextBlock>
+                <TextBlock Text="Agility: ">
+                    <TextBlock Text="{Binding Ninja.Agility}"></TextBlock>
+                </TextBlock>
+                <TextBlock Text="Intelligence: ">
+                    <TextBlock Text="{Binding Ninja.Intelligence}"></TextBlock>
+                </TextBlock>
             </TextBlock>
         </StackPanel>
     </Border>

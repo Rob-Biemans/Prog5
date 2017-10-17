@@ -10,13 +10,13 @@ namespace Eindopdracht.Model
     {
         public Ninja()
         {
-            this.Inventory = new HashSet<Equipment>();
+            this.Inventory = new List<Equipment>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
         public int Currency { get; set; }
 
-        public virtual ICollection<Equipment> Inventory { get; set; }
+        public virtual List<Equipment> Inventory { get; set; }
     }
 }
