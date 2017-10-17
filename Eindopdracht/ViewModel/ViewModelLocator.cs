@@ -12,6 +12,7 @@ namespace Eindopdracht.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register<NinjaListViewModel>();
+            SimpleIoc.Default.Register<EquipmentListViewModel>();
         }
 
         public NinjaListViewModel NinjaList
@@ -19,14 +20,6 @@ namespace Eindopdracht.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<NinjaListViewModel>();
-            }
-        }
-
-        public EquipmentListViewModel EquipmentList
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<EquipmentListViewModel>();
             }
         }
 
@@ -51,6 +44,38 @@ namespace Eindopdracht.ViewModel
             get
             {
                 return new ViewNinjaViewModel(NinjaList.SelectedNinja);
+            }
+        }
+
+        public EquipmentListViewModel EquipmentList
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<EquipmentListViewModel>();
+            }
+        }
+
+        public EditEquipmentViewModel UpdateEquipment
+        {
+            get
+            {
+                return new EditEquipmentViewModel(EquipmentList.SelectedEquipment);
+            }
+        }
+
+        public AddEquipmentViewModel AddEquipment
+        {
+            get
+            {
+                return new AddEquipmentViewModel(this.EquipmentList);
+            }
+        }
+
+        public ViewEquipmentViewModel ViewEquipment
+        {
+            get
+            {
+                return new ViewEquipmentViewModel(EquipmentList.SelectedEquipment);
             }
         }
 

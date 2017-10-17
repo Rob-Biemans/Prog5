@@ -8,6 +8,6 @@ namespace Eindopdracht.Model
 {
     interface IEquipmentRepository
     {
-        List<Equipment> GetEquipment();
+        List<Equipment> GetEquipments();
     }
 }

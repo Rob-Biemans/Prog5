@@ -8,7 +8,7 @@ namespace Eindopdracht.Model
 {
     class SeedEquipment : IEquipmentRepository
     {
-        public List<Equipment> GetEquipment()
+        public List<Equipment> GetEquipments()
         {
             var equipments = new List<Equipment>();
 

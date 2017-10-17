@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Eindopdracht.View
 {
     /// <summary>
-    /// Interaction logic for EquipmentWindow.xaml
+    /// Interaction logic for EditEquipmentWindow.xaml
     /// </summary>
-    public partial class EquipmentWindow : Window
+    public partial class EditEquipmentWindow : Window
     {
-        public EquipmentWindow()
+        public EditEquipmentWindow()
         {
             InitializeComponent();
         }
