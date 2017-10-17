@@ -5,8 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eindopdracht.View"
         mc:Ignorable="d"
-        Title="ViewEquipmentWindow" Height="300" Width="300">
-    <Grid>
-        
-    </Grid>
+        Title="ViewEquipmentWindow" Height="381.593" Width="300"
+        DataContext="{Binding ViewEquipment, Source={StaticResource Locator}}">
+    <Border BorderThickness="12">
+        <StackPanel>
+
+            <TextBlock x:Name="txtTitel" HorizontalAlignment="Left" Margin="27,10,0,0" TextWrapping="Wrap" Text="View Equipment" VerticalAlignment="Top" FontSize="28"/>
+
+            <TextBlock Text="Id:" Margin="0,5,0,0"  />
+            <TextBox MaxLength="5" Text="{Binding Equipment.Id}" IsReadOnly="True"  />
+
+            <TextBlock Text="Name:" Margin="0,5,0,0"  />
+            <TextBox Text="{Binding Equipment.Name}" IsReadOnly="True"  />
+
+            <TextBlock Text="Category:" Margin="0,5,0,0"  />
+            <TextBox Text="{Binding Equipment.Category}" IsReadOnly="True"  />
+
+            <TextBlock Text="Prijs:" Margin="0,5,0,0"  />
+            <TextBox Text="{Binding Equipment.Price}" IsReadOnly="True"  />
+
+            <TextBlock Text="Agility:" Margin="0,5,0,0"  />
+            <TextBox Text="{Binding Equipment.Agility}" IsReadOnly="True"  />
+
+            <TextBlock Text="Strength:" Margin="0,5,0,0"  />
+            <TextBox Text="{Binding Equipment.Strenght}" IsReadOnly="True"  />
+
+            <TextBlock Text="Intelligence:" Margin="0,5,0,0"  />
+            <TextBox Text="{Binding Equipment.Intelligence}" IsReadOnly="True"  />
+        </StackPanel>
+    </Border>
 </Window>

@@ -5,8 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eindopdracht.View"
         mc:Ignorable="d"
-        Title="EditEquipmentWindow" Height="300" Width="300">
-    <Grid>
-        
-    </Grid>
+        Title="EditEquipmentWindow" Height="382.418" Width="300"
+        DataContext="{Binding UpdateEquipment, Source={StaticResource Locator}}">
+    <Border BorderThickness="12">
+        <StackPanel>
+
+            <TextBlock x:Name="txtTitel" HorizontalAlignment="Left" Margin="27,10,0,0" TextWrapping="Wrap" Text="Edit Equipment" VerticalAlignment="Top" FontSize="28"/>
+
+            <TextBlock Text="Id:" Margin="0,5,0,0"  />
+            <TextBox MaxLength="5" Text="{Binding Equipment.Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+
+            <TextBlock Text="Name:" Margin="0,5,0,0"  />
+            <TextBox Text="{Binding Equipment.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+
+            <TextBlock Text="Category:" Margin="0,5,0,0"  />
+            <TextBox Text="{Binding Equipment.Category, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+
+            <TextBlock Text="Prijs:" Margin="0,5,0,0"  />
+            <TextBox Text="{Binding Equipment.Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+
+            <TextBlock Text="Agility:" Margin="0,5,0,0"  />
+            <TextBox Text="{Binding Equipment.Agility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+
+            <TextBlock Text="Strength:" Margin="0,5,0,0"  />
+            <TextBox Text="{Binding Equipment.Strenght, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+
+            <TextBlock Text="Intelligence:" Margin="0,5,0,0"  />
+            <TextBox Text="{Binding Equipment.Intelligence, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+        </StackPanel>
+    </Border>
 </Window>

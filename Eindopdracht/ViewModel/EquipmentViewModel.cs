@@ -47,7 +47,7 @@ namespace Eindopdracht.ViewModel
         public int Intelligence
         {
             get { return _equipment.Intelligence; }
-            set { _equipment.Agility = value; RaisePropertyChanged("Intelligence"); }
+            set { _equipment.Intelligence = value; RaisePropertyChanged("Intelligence"); }
         }
 
         private Equipment _equipment;
