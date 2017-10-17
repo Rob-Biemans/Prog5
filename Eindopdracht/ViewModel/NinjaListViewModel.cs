@@ -15,6 +15,7 @@ namespace Eindopdracht.ViewModel
     public class NinjaListViewModel : ViewModelBase
     {
         private AddNinjaWindow _addNinjaWindow;
+        private OverviewEquipmentWindow _overviewEquipmentWindow;
 
         INinjaRepository ninjaRepository;
 
@@ -37,6 +38,7 @@ namespace Eindopdracht.ViewModel
         public ICommand DeleteNinjaCommand { get; set; }
         public ICommand ShowEditNinjaCommand { get; set; }
         public ICommand ShowViewNinjaCommand { get; set; }
+        public ICommand ShowViewEquipmentCommand { get; set; }
 
         public NinjaListViewModel()
         {
@@ -49,6 +51,19 @@ namespace Eindopdracht.ViewModel
 
             ShowEditNinjaCommand = new RelayCommand(ShowEditNinja);
             ShowViewNinjaCommand = new RelayCommand(ShowViewNinja);
+
+            ShowViewEquipmentCommand = new RelayCommand(ShowViewEquipment, CanShowViewEquipment);
+        }
+
+        public void ShowViewEquipment()
+        {
+            _overviewEquipmentWindow = new OverviewEquipmentWindow();
+            _overviewEquipmentWindow.Show();
+        }
+
+        public bool CanShowViewEquipment()
+        {
+            return _addNinjaWindow != null ? !_addNinjaWindow.IsVisible : true;
         }
 
         public bool CanShowAddNinja()
