@@ -14,10 +14,12 @@
             <DockPanel Height="235">
                 <DockPanel DockPanel.Dock="Left" Width="120">
                     <!-- Categorieen -->
-                    <ListView>
-                        <ListViewItem>
-                            <TextBlock Text="Helm"/>
-                        </ListViewItem>
+                    <ListView ItemsSource="{Binding Equipment}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
                     </ListView>
                 </DockPanel>
                 <DockPanel DockPanel.Dock="Left" Width="120">

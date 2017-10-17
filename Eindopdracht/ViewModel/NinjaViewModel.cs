@@ -54,7 +54,6 @@ namespace Eindopdracht.Model
         public NinjaViewModel(Ninja ninja)
         {
             this._ninja = ninja;
-            this._ninja.Inventory.Add(new Equipment { Id = 12, Name = "Platinum", Price = 1400, Category = "Chest", Strenght = 5 });
             this._strenght = CalculateStrength();
             this._agility = CalculateAgility();
             this._inteligence = CalculateIntelligence();
