@@ -9,7 +9,7 @@ namespace Eindopdracht.Model
     public class Equipment
     {
         public int Id { get; set; }
-        public string Category { get; set; }
+        public int Category { get; set; }
         public string Name { get; set; }
         public int Price { get; set; }
         public Nullable<int> NinjaId { get; set; }
