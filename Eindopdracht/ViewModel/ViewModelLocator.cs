@@ -13,6 +13,7 @@ namespace Eindopdracht.ViewModel
 
             SimpleIoc.Default.Register<NinjaListViewModel>();
             SimpleIoc.Default.Register<EquipmentListViewModel>();
+            SimpleIoc.Default.Register<CategoryListViewModel>();
         }
 
         public NinjaListViewModel NinjaList
@@ -76,6 +77,31 @@ namespace Eindopdracht.ViewModel
             get
             {
                 return new ViewEquipmentViewModel(EquipmentList.SelectedEquipment);
+            }
+        }
+
+
+        public CategoryListViewModel CategoryList
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<CategoryListViewModel>();
+            }
+        }
+
+        public EditCategoryViewModel UpdateCategory
+        {
+            get
+            {
+                return new EditCategoryViewModel(CategoryList.SelectedCategory);
+            }
+        }
+
+        public AddCategoryViewModel AddCategory
+        {
+            get
+            {
+                return new AddCategoryViewModel(this.CategoryList);
             }
         }
 

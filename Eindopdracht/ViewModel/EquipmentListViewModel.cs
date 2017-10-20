@@ -15,6 +15,7 @@ namespace Eindopdracht.ViewModel
     public class EquipmentListViewModel : ViewModelBase
     {
         private AddEquipmentWindow _addEquipmentWindow;
+        private OverviewCategoryWindow _overviewCategoryWindow;
 
         IEquipmentRepository equipmentRepository;
 
@@ -38,6 +39,8 @@ namespace Eindopdracht.ViewModel
         public ICommand ShowEditEquipmentCommand { get; set; }
         public ICommand ShowViewEquipmentCommand { get; set; }
 
+        public ICommand ShowViewCategoriesCommand { get; set; }
+
         public EquipmentListViewModel()
         {
             equipmentRepository = new SeedEquipment();
@@ -49,6 +52,19 @@ namespace Eindopdracht.ViewModel
 
             ShowEditEquipmentCommand = new RelayCommand(ShowEditEquipment);
             ShowViewEquipmentCommand = new RelayCommand(ShowViewEquipment);
+
+            ShowViewCategoriesCommand = new RelayCommand(ShowViewCategory, CanShowViewCategory);
+        }
+
+        public void ShowViewCategory()
+        {
+            _overviewCategoryWindow = new OverviewCategoryWindow();
+            _overviewCategoryWindow.Show();
+        }
+
+        public bool CanShowViewCategory()
+        {
+            return _overviewCategoryWindow != null ? !_overviewCategoryWindow.IsVisible : true;
         }
 
         public bool CanShowAddEquipment()

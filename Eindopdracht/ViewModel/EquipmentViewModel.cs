@@ -16,7 +16,7 @@ namespace Eindopdracht.ViewModel
             set { _equipment.Id = value; RaisePropertyChanged("Id"); }
         }
 
-        public string Category
+        public int Category
         {
             get { return _equipment.Category; }
             set { _equipment.Category = value; RaisePropertyChanged("Category"); }
