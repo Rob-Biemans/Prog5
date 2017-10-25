@@ -157,24 +157,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="C__RefactorLog.cs">
-      <DependentUpon>Entities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Entities.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Entities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Entities.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Equipment.cs" />
     <Compile Include="Model\ICategoriesRepository.cs" />
@@ -184,9 +166,6 @@
     <Compile Include="Model\SeedCategory.cs" />
     <Compile Include="Model\SeedEquipment.cs" />
     <Compile Include="Model\SeedNinja.cs" />
-    <Compile Include="Ninja.cs">
-      <DependentUpon>Entities.tt</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\AddCategoryViewModel.cs" />
     <Compile Include="ViewModel\AddEquipmentViewModel.cs" />
     <Compile Include="ViewModel\AddNinjaViewModel.cs" />
@@ -262,13 +241,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Entities.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Entities.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Entities.edmx.diagram">
-      <DependentUpon>Entities.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -292,16 +264,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Entities.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Entities.edmx</DependentUpon>
-      <LastGenOutput>Entities.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Entities.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Entities.edmx</DependentUpon>
-      <LastGenOutput>Entities.cs</LastGenOutput>
-    </Content>
     <Resource Include="Images\ninja.png" />
   </ItemGroup>
   <ItemGroup>
