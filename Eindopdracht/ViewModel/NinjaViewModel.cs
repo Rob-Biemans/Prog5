@@ -2,6 +2,7 @@
 using Eindopdracht.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Collections.Generic;
 
 namespace Eindopdracht.Model
 {
@@ -39,6 +40,12 @@ namespace Eindopdracht.Model
         {
             get { return _inteligence; }
             set { _inteligence = value; RaisePropertyChanged("Intelligence"); }
+        }
+
+        public List<Equipment> Inventory
+        {
+            get { return _ninja.Inventory; }
+            set { _ninja.Inventory = value; }
         }
 
         private Ninja _ninja;

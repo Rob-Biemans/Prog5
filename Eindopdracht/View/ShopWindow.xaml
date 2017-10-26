@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eindopdracht.View"
         mc:Ignorable="d"
-        Title="The Shop" Height="300" Width="462.363">
+        Title="The Shop" Height="300" Width="462.363"
+        DataContext="{Binding ViewShop, Source={StaticResource Locator}}">
     <Border>
         <StackPanel>
             <StackPanel>
@@ -14,17 +15,17 @@
             <DockPanel Height="235">
                 <DockPanel DockPanel.Dock="Left" Width="120">
                     <!-- Categorieen -->
-                    <ListView ItemsSource="{Binding Equipment}">
+                    <ListView ItemsSource="{Binding CategoryList.Categorys}" SelectedItem="{Binding SelectedCategory}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding}"/>
+                                <TextBlock Text="{Binding Name}" />
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
                 </DockPanel>
                 <DockPanel DockPanel.Dock="Left" Width="120">
                     <!-- Items -->
-                    <ListView>
+                    <ListView ItemsSource="{Binding CategoryEquipment}">
                         <ListViewItem>
                             <TextBlock Text="Bronze Helm"/>
                         </ListViewItem>
