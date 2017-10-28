@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Eindopdracht.ViewModel
+namespace Eindopdracht.Model
 {
     public class EquipmentViewModel : ViewModelBase
     {
@@ -26,6 +26,11 @@ namespace Eindopdracht.ViewModel
         {
             get { return _equipment.Name; }
             set { _equipment.Name = value; RaisePropertyChanged("Name"); }
+        }
+
+        internal object ToModel()
+        {
+            return _equipment;
         }
 
         public int Price
@@ -51,15 +56,16 @@ namespace Eindopdracht.ViewModel
         }
 
         private Equipment _equipment;
+        public EquipmentViewModel()
+        {
+            _equipment = new Equipment();
+        }
 
         public EquipmentViewModel(Equipment equipment)
         {
             _equipment = equipment;
         }
 
-        public EquipmentViewModel()
-        {
-            _equipment = new Equipment();
-        }
+
     }
 }

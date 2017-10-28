@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Eindopdracht.Model;
 using System.Windows.Input;
+using System.Data.Entity;
+using Eindopdracht.View;
+using GalaSoft.MvvmLight.Command;
 
 namespace Eindopdracht.ViewModel
 {
@@ -16,6 +15,20 @@ namespace Eindopdracht.ViewModel
         public EditEquipmentViewModel(EquipmentViewModel selectedEquipment)
         {
             this.Equipment = selectedEquipment;
+            SaveCommand = new RelayCommand<EditEquipmentWindow>(Save);
+        }
+
+        private void Save(EditEquipmentWindow window)
+        {
+            using (var context = new EntitiesEntities1())
+            {
+                var equipment = Equipment.ToModel();
+                //Even aan entity framework laten weten dat we dingen hebben aangepast!
+                context.Entry(equipment).State = EntityState.Modified;
+                context.SaveChanges();
+            }
+
+            window.Hide();
         }
     }
 }

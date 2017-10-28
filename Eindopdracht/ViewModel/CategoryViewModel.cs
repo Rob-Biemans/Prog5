@@ -29,6 +29,11 @@ namespace Eindopdracht.ViewModel
             _category = category;
         }
 
+        internal object ToModel()
+        {
+            return _category;
+        }
+
         public CategoryViewModel()
         {
             _category = new Category();

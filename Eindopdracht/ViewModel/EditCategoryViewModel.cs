@@ -1,5 +1,8 @@
 ﻿using Eindopdracht.Model;
 using System.Windows.Input;
+using System.Data.Entity;
+using Eindopdracht.View;
+using GalaSoft.MvvmLight.Command;
 
 namespace Eindopdracht.ViewModel
 {
@@ -12,6 +15,22 @@ namespace Eindopdracht.ViewModel
         public EditCategoryViewModel(CategoryViewModel selectedCategory)
         {
             this.Category = selectedCategory;
+            SaveCommand = new RelayCommand<EditCategoryWindow>(Save);
         }
+
+        private void Save(EditCategoryWindow window)
+        {
+            using (var context = new EntitiesEntities1())
+            {
+                var category = Category.ToModel();
+                //Even aan entity framework laten weten dat we dingen hebben aangepast!
+                context.Entry(category).State = EntityState.Modified;
+                context.SaveChanges();
+            }
+
+            window.Hide();
+        }
+
+
     }
 }
