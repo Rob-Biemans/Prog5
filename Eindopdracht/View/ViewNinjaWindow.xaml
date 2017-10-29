@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eindopdracht.View"
         mc:Ignorable="d"
-        Title="My profile" Height="372.527" Width="390.659"
+        Title="My profile" Height="436.127" Width="390.659"
         DataContext="{Binding ViewNinja, Source={StaticResource Locator}}">
     <Border BorderThickness="12">
         <StackPanel>
-            <StackPanel.Background>
+            <!--<StackPanel.Background>
                 <ImageBrush ImageSource="/Eindopdracht;component/Images/ninja.png" Stretch="None" />
-            </StackPanel.Background>
+            </StackPanel.Background>-->
             <Button x:Name="button" Command="{Binding ShowShopViewCommand}" Content="Shop" Margin="271,0,0,0"/>
             <TextBlock Text="Name: " Margin="0,0,218,0" />
             <TextBlock x:Name="txtTitel" HorizontalAlignment="Left" Margin="50,10,0,0" TextWrapping="Wrap" Text="{Binding Ninja.Name, Mode=TwoWay}" VerticalAlignment="Top" FontSize="28"/>
@@ -33,6 +33,12 @@
                             <TextBlock Text="{Binding Ninja.Intelligence}"/>
                         </InlineUIContainer></TextBlock>
                 </InlineUIContainer></TextBlock>
+            <StackPanel Height="243">
+                <StackPanel.Background>
+                <ImageBrush ImageSource="/Eindopdracht;component/Images/ninja.png" Stretch="None" />
+            </StackPanel.Background>
+                <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text=""/>
+            </StackPanel>
         </StackPanel>
     </Border>
 

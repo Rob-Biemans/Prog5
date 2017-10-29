@@ -17,7 +17,6 @@ namespace Eindopdracht.ViewModel
         public ViewNinjaViewModel(NinjaViewModel selectedNinja)
         {
             this.Ninja = selectedNinja;
-
             ShowShopViewCommand = new RelayCommand(ShowShop);
         }
 

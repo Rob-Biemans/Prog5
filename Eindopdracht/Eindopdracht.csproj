@@ -203,6 +203,7 @@
     <Compile Include="ViewModel\InventoryViewModel.cs" />
     <Compile Include="ViewModel\NinjaListViewModel.cs" />
     <Compile Include="ViewModel\NinjaViewModel.cs" />
+    <Compile Include="ViewModel\ViewShopViewModel.cs" />
     <Compile Include="ViewModel\ViewEquipmentViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\ViewNinjaViewModel.cs" />

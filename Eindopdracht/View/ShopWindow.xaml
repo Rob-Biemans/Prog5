@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eindopdracht.View"
         mc:Ignorable="d"
-        Title="The Shop" Height="300" Width="462.363">
+        Title="The Shop" Height="555.556" Width="462.363"
+        DataContext="{Binding ViewShop, Source={StaticResource Locator}}">
     <Border>
         <StackPanel>
             <StackPanel>
@@ -14,33 +15,54 @@
             <DockPanel Height="235">
                 <DockPanel DockPanel.Dock="Left" Width="120">
                     <!-- Categorieen -->
-                    <ListView ItemsSource="{Binding Equipment}">
+                    <ListView ItemsSource="{Binding CategoryList.Categorys}" SelectedItem="{Binding SelectedCategory}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding}"/>
+                                <TextBlock Text="{Binding Name}" />
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
                 </DockPanel>
                 <DockPanel DockPanel.Dock="Left" Width="120">
                     <!-- Items -->
-                    <ListView>
-                        <ListViewItem>
-                            <TextBlock Text="Bronze Helm"/>
-                        </ListViewItem>
+                    <ListView ItemsSource="{Binding ShowEquipment}" SelectedItem="{Binding SelectedEquipment}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
                     </ListView>
                 </DockPanel>
                 <DockPanel DockPanel.Dock="Left" Width="auto">
                     <!-- Selected Item -->
-                    <ListView>
+                    <ListView ItemsSource="{Binding SelectedEquipment}">
                         <ListViewItem>
-                            <TextBlock Text="Bronze Helm"/>
+                            <TextBlock Text="{Binding SelectedEquipment.Name}"/>
                         </ListViewItem>
-                        <Button x:Name="btnBuy" Content="BUY" Height="30" VerticalAlignment="Top" Width="50"/>
-                        <TextBlock  VerticalAlignment="Bottom" Text="You have xxx gold left"/>
+                        <Button x:Name="btnBuy" Command="{Binding BuyEquipmentCommand}" Content="BUY" Height="30" VerticalAlignment="Top" Width="50"/>
+                        <TextBlock  VerticalAlignment="Bottom" Text="Gold: "/>
+                        <TextBlock  VerticalAlignment="Bottom" Text="{Binding Ninja.Currency}"/>
+                        <TextBlock VerticalAlignment="Bottom" Text="{Binding BuyMessage}"></TextBlock>
                     </ListView>
                 </DockPanel>
             </DockPanel>
+            <DataGrid AutoGenerateColumns="False" IsReadOnly="True" x:Name="dataGrid" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Width="436" Height="174" ItemsSource="{Binding NinjaEquipment}" SelectedItem="{Binding SelectedEquipment, Mode=TwoWay}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="#" Binding="{Binding Id}" Foreground="#FF1D1616" />
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Foreground="#FF1D1616" Width="*" />
+                    <DataGridTextColumn Header="Gold" Binding="{Binding Price}" Foreground="#FF1D1616" Width="*" />
+                    <DataGridTemplateColumn Width="50">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Command="{Binding DataContext.SellEquipmentCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                    BorderThickness="0,0,0,1" BorderBrush="#FF999A9B" Foreground="White" Margin="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" Height="30" Background="#FF6F9BDA" Content="Sell"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button x:Name="button" Content="Sell All" Margin="0,0,315,0"/>
+            <Button x:Name="button1" Content="Back" Command="{Binding ShowNinjaCommand}"/>
         </StackPanel>
     </Border>
 </Window>
