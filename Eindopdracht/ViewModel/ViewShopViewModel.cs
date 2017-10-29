@@ -69,6 +69,16 @@ namespace Eindopdracht.ViewModel
         {
             Ninja.SellAllEquipment();
             NinjaEquipment.Clear();
+            List<InventoryViewModel> inventory = new List<InventoryViewModel>();
+            Ninja.Inventory.ForEach(i => {
+                using (var context = new EntitiesEntities1())
+                {
+                    Inventory row = (Inventory)new InventoryViewModel(i.Id, Ninja.Id).ToModel();
+                    context.Inventories.Remove(row);
+                    context.SaveChanges();
+                }
+            });
+            
             BuyMessage = "Items sold!";
         }
 
@@ -97,7 +107,6 @@ namespace Eindopdracht.ViewModel
                 using (var context = new EntitiesEntities1())
                 {
                     Inventory row = (Inventory)inventory.ToModel();
-                    //context.Entry(inventory).State = EntityState.Modified;
                     context.Inventories.Add(row);
                     context.SaveChanges();
                 }
