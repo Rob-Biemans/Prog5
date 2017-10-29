@@ -61,8 +61,7 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="button" Content="Sell All" Margin="0,0,315,0"/>
-            <Button x:Name="button1" Content="Back" Command="{Binding ShowNinjaCommand}"/>
+            <Button x:Name="button" Command="{Binding SellAllEquipmentCommand}" Content="Sell All" Margin="0,0,315,0"/>
         </StackPanel>
     </Border>
 </Window>

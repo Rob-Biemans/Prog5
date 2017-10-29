@@ -100,6 +100,17 @@ namespace Eindopdracht.Model
             return collection;
         }
 
+        internal void SellAllEquipment()
+        {
+            Inventory.ForEach(e => {
+                Currency += e.Price;
+            });
+            Inventory.Clear();
+            Agility = CalculateAgility();
+            Intelligence = CalculateIntelligence();
+            Strength = CalculateStrength();
+        }
+
         public int CalculateAgility()
         {
             int totalAgility = 0;
@@ -130,15 +141,15 @@ namespace Eindopdracht.Model
 
         public void AddEquipment(EquipmentViewModel equipment)
         {
-                Equipment newEquipment = new Equipment();
-                newEquipment.Id = equipment.Id;
-                newEquipment.Name = equipment.Name;
-                newEquipment.Price = equipment.Price;
-                newEquipment.Strenght = equipment.Strenght;
-                newEquipment.Intelligence = equipment.Intelligence;
-                newEquipment.Agility = equipment.Agility;
-               
-                Inventory.Add(newEquipment);
+            Equipment newEquipment = new Equipment();
+            newEquipment.Id = equipment.Id;
+            newEquipment.Name = equipment.Name;
+            newEquipment.Price = equipment.Price;
+            newEquipment.Strenght = equipment.Strenght;
+            newEquipment.Intelligence = equipment.Intelligence;
+            newEquipment.Agility = equipment.Agility;
+            
+            Inventory.Add(newEquipment);
             Agility = CalculateAgility();
             Intelligence = CalculateIntelligence();
             Strength = CalculateStrength();
