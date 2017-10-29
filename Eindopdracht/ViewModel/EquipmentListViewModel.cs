@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using Eindopdracht.View;
+using System.Data.Entity;
 
 namespace Eindopdracht.ViewModel
 {
@@ -80,7 +81,14 @@ namespace Eindopdracht.ViewModel
 
         private void DeleteEquipment()
         {
-            Equipments.Remove(SelectedEquipment);
+            using (var context = new EntitiesEntities1())
+            {
+                var equipment = (Equipment)_selectedEquipment.ToModel();
+                //Even aan entity framework laten weten dat we dingen hebben aangepast!
+                context.Entry(equipment).State = EntityState.Modified;
+                context.Equipments.Remove(equipment);
+                context.SaveChanges();
+            }
         }
 
         public void ShowEditEquipment()

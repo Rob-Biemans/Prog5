@@ -1,6 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Eindopdracht.Model;
 using System.Windows.Input;
+using System.Data.Entity;
+using Eindopdracht.View;
 
 namespace Eindopdracht.ViewModel
 {
@@ -17,13 +19,19 @@ namespace Eindopdracht.ViewModel
         {
             this._equipmentList = EquipmentList;
             this.Equipment = new EquipmentViewModel();
-            AddEquipmentCommand = new RelayCommand(AddEquipment, CanAddEquipment);
+            AddEquipmentCommand = new RelayCommand<AddEquipmentWindow>(AddEquipment);
         }
 
-        private void AddEquipment()
+        private void AddEquipment(AddEquipmentWindow window)
         {
-            _equipmentList.Equipments.Add(Equipment);
-            _equipmentList.HideAddEquipment();
+            using (var context = new EntitiesEntities1())
+            {
+                var equipment = (Equipment)Equipment.ToModel();
+                //Even aan entity framework laten weten dat we dingen hebben aangepast!
+                context.Entry(equipment).State = EntityState.Modified;
+                context.Equipments.Add(equipment);
+                context.SaveChanges();
+            }
         }
 
         public bool CanAddEquipment()
