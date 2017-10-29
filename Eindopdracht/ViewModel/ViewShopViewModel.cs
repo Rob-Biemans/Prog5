@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -91,6 +92,15 @@ namespace Eindopdracht.ViewModel
                 
                 Ninja.Currency -= SelectedEquipment.Price;
                 NinjaEquipment.Add(SelectedEquipment);
+                
+                InventoryViewModel inventory = new InventoryViewModel(SelectedEquipment.Id, Ninja.Id);
+                using (var context = new EntitiesEntities1())
+                {
+                    Inventory row = (Inventory)inventory.ToModel();
+                    //context.Entry(inventory).State = EntityState.Modified;
+                    context.Inventories.Add(row);
+                    context.SaveChanges();
+                }
                 BuyMessage = "Equipment Purchased!";
 
             }
