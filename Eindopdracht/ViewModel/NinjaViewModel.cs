@@ -3,6 +3,7 @@ using Eindopdracht.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.Generic;
+using Eindopdracht.ViewModel;
 
 namespace Eindopdracht.Model
 {
@@ -93,6 +94,18 @@ namespace Eindopdracht.Model
             int totalCurrency = _ninja.Currency;
             this._ninja.Inventory.ForEach(e => totalCurrency += e.Price);
             return totalCurrency;
+        }
+
+        public void AddEquipment(EquipmentViewModel equipment)
+        {
+                Equipment newEquipment = new Equipment();
+                newEquipment.Id = equipment.Id;
+                newEquipment.Name = equipment.Name;
+                newEquipment.Price = equipment.Price;
+                newEquipment.Strenght = equipment.Strenght;
+                newEquipment.Intelligence = equipment.Intelligence;
+                newEquipment.Agility = equipment.Agility;
+                Inventory.Add(newEquipment);
         }
     }
 }
