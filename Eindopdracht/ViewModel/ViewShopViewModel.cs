@@ -1,4 +1,5 @@
 ﻿using Eindopdracht.Model;
+using Eindopdracht.View;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
@@ -13,6 +14,8 @@ namespace Eindopdracht.ViewModel
 {
     public class ViewShopViewModel : ViewModelBase
     {
+        private ViewNinjaWindow _ninjaWindow;
+
         private List<EquipmentViewModel> _showEquipment;
         private CategoryViewModel _selectedCategory;
         private EquipmentViewModel _selectedEquipment;
@@ -42,26 +45,52 @@ namespace Eindopdracht.ViewModel
             set { _showEquipment = value; base.RaisePropertyChanged(); }
         }
 
+        //public EquipmentListViewModel NinjaEquipment
+        //{
+        //    get { return _ninjaEquipment; }
+        //    set { _ninjaEquipment = value; base.RaisePropertyChanged(); }
+        //}
+
+        public ObservableCollection<EquipmentViewModel> NinjaEquipment { get; set; }
+
         public ICommand ShowCategoryEquipmentCommand;
         public ICommand BuyEquipmentCommand { get; set; }
+        public ICommand SellEquipmentCommand { get; set; }
 
         public ViewShopViewModel(NinjaViewModel selectedNinja, EquipmentListViewModel equipmentList, CategoryListViewModel categoryList)
         {
             this.Ninja = selectedNinja;
+            //this.NinjaEquipment = new ObservableCollection<EquipmentViewModel>();
+            this.NinjaEquipment = Ninja.ConvertInventory();
             this.EquipmentList = equipmentList;
             this.CategoryList = categoryList;
             this.BuyMessage = "Select an item in the list to purchase";
 
             //ShowCategoryEquipmentCommand = new RelayCommand(ShowCategoryEquipment);
             BuyEquipmentCommand = new RelayCommand(BuyEquipment);
+            SellEquipmentCommand = new RelayCommand(SellEquipment);
+        }
+        
+
+        private void SellEquipment()
+        {
+            if (SelectedEquipment == null)
+                return;
+            Ninja.Currency += SelectedEquipment.Price;
+            Ninja.SellEquipment(SelectedEquipment);
+            NinjaEquipment.Remove(SelectedEquipment);
         }
 
         public void BuyEquipment()
         {
-            if (Ninja.Currency - SelectedEquipment.Price >= 0) 
+            if (SelectedEquipment == null)
+                return;
+            if (Ninja.Currency - SelectedEquipment.Price >= 0)
             {
                 Ninja.AddEquipment(SelectedEquipment);
+                
                 Ninja.Currency -= SelectedEquipment.Price;
+                NinjaEquipment.Add(SelectedEquipment);
                 BuyMessage = "Equipment Purchased!";
             }
             else
@@ -85,6 +114,7 @@ namespace Eindopdracht.ViewModel
             ShowEquipment = EquipmentList.Equipments.Where(e => e.Category == SelectedCategory.Id).ToList();
             return ShowEquipment;
         }
+
 
     }
 }

@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 using Eindopdracht.ViewModel;
+using System;
+using System.Collections.ObjectModel;
 
 namespace Eindopdracht.Model
 {
@@ -88,11 +90,29 @@ namespace Eindopdracht.Model
             return totalStrenght;
         }
 
+        public ObservableCollection<EquipmentViewModel> ConvertInventory()
+        {
+            ObservableCollection<EquipmentViewModel> collection = new ObservableCollection<EquipmentViewModel>();
+            Inventory.ForEach(i =>
+            {
+                collection.Add(new EquipmentViewModel(i));
+            });
+            return collection;
+        }
+
         public int CalculateAgility()
         {
             int totalAgility = 0;
             this._ninja.Inventory.ForEach(e => totalAgility += e.Agility);
             return totalAgility;
+        }
+
+        public void SellEquipment(EquipmentViewModel selectedEquipment)
+        {
+            Inventory.RemoveAll(i => i.Id == selectedEquipment.Id);
+            Agility = CalculateAgility();
+            Intelligence = CalculateIntelligence();
+            Strength = CalculateStrength();
         }
 
         public int CalculateIntelligence()
@@ -117,9 +137,11 @@ namespace Eindopdracht.Model
                 newEquipment.Strenght = equipment.Strenght;
                 newEquipment.Intelligence = equipment.Intelligence;
                 newEquipment.Agility = equipment.Agility;
-
                
                 Inventory.Add(newEquipment);
+            Agility = CalculateAgility();
+            Intelligence = CalculateIntelligence();
+            Strength = CalculateStrength();
         }
     }
 }
