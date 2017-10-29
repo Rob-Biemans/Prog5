@@ -20,10 +20,10 @@ namespace Eindopdracht.ViewModel
         {
             this._CategoryList = CategoryList;
             this.Category = new CategoryViewModel();
-            AddCategoryCommand = new RelayCommand<AddCategoryWindow>(AddCategory);
+            AddCategoryCommand = new RelayCommand(AddCategory);
         }
 
-        private void AddCategory(AddCategoryWindow window)
+        private void AddCategory()
         {
             using (var context = new EntitiesEntities1())
             {

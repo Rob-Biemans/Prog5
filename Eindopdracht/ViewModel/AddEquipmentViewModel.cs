@@ -21,10 +21,10 @@ namespace Eindopdracht.ViewModel
         {
             this._equipmentList = EquipmentList;
             this.Equipment = new EquipmentViewModel();
-            AddEquipmentCommand = new RelayCommand<AddEquipmentWindow>(AddEquipment);
+            AddEquipmentCommand = new RelayCommand(AddEquipment);
         }
 
-        private void AddEquipment(AddEquipmentWindow window)
+        private void AddEquipment()
         {
             using (var context = new EntitiesEntities1())
             {
