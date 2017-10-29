@@ -3,6 +3,7 @@ using System.Windows.Input;
 using System.Data.Entity;
 using Eindopdracht.View;
 using GalaSoft.MvvmLight.Command;
+using System;
 
 namespace Eindopdracht.ViewModel
 {
@@ -11,6 +12,7 @@ namespace Eindopdracht.ViewModel
         private CategoryListViewModel _CategoryList;
 
         public CategoryViewModel Category { get; set; }
+        Random ran = new Random();
 
         public ICommand AddCategoryCommand { get; set; }
 
@@ -27,7 +29,8 @@ namespace Eindopdracht.ViewModel
             {
                 var category = (Category)Category.ToModel();
                 //Even aan entity framework laten weten dat we dingen hebben aangepast!
-                context.Entry(category).State = EntityState.Modified;
+                context.Entry(category).State = EntityState.Added;
+                category.Id = ran.Next(1, 1000000000);
                 context.Categories.Add(category);
                 context.SaveChanges();
             }

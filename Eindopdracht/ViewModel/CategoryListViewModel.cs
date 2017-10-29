@@ -67,7 +67,7 @@ namespace Eindopdracht.ViewModel
             {
                 var category = (Category)_selectedCategory.ToModel();
                 //Even aan entity framework laten weten dat we dingen hebben aangepast!
-                context.Entry(category).State = EntityState.Modified;
+                context.Entry(category).State = EntityState.Deleted;
                 context.Categories.Remove(category);
                 context.SaveChanges();
             }

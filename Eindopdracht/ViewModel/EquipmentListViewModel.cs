@@ -85,7 +85,7 @@ namespace Eindopdracht.ViewModel
             {
                 var equipment = (Equipment)_selectedEquipment.ToModel();
                 //Even aan entity framework laten weten dat we dingen hebben aangepast!
-                context.Entry(equipment).State = EntityState.Modified;
+                context.Entry(equipment).State = EntityState.Deleted;
                 context.Equipments.Remove(equipment);
                 context.SaveChanges();
             }

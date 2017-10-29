@@ -12,6 +12,7 @@ namespace Eindopdracht.ViewModel
         private NinjaListViewModel _ninjaList;
 
         public NinjaViewModel Ninja { get; set; }
+        Random ran = new Random();
 
         public ICommand AddNinjaCommand { get; set; }
 
@@ -19,16 +20,17 @@ namespace Eindopdracht.ViewModel
         {
             this._ninjaList = NinjaList;
             this.Ninja = new NinjaViewModel();
-            AddNinjaCommand = new RelayCommand<AddNinjaWindow>(AddNinja);
+            AddNinjaCommand = new RelayCommand(AddNinja);
         }
 
-        private void AddNinja(AddNinjaWindow window)
+        private void AddNinja()
         {
             using (var context = new EntitiesEntities1())
             {
                 var ninja = (Ninja)Ninja.ToModel();
                 //Even aan entity framework laten weten dat we dingen hebben aangepast!
-                context.Entry(ninja).State = EntityState.Modified;
+                context.Entry(ninja).State = EntityState.Added;
+                ninja.Id = ran.Next(1, 1000000000);
                 context.Ninjas.Add(ninja);
                 context.SaveChanges();
             }

@@ -84,7 +84,7 @@ namespace Eindopdracht.ViewModel
             {
                 var ninja = (Ninja)_selectedNinja.ToModel();
                 //Even aan entity framework laten weten dat we dingen hebben aangepast!
-                context.Entry(ninja).State = EntityState.Modified;
+                context.Entry(ninja).State = EntityState.Deleted;
                 context.Ninjas.Remove(ninja);
                 context.SaveChanges();
             }

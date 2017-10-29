@@ -3,6 +3,7 @@ using Eindopdracht.Model;
 using System.Windows.Input;
 using System.Data.Entity;
 using Eindopdracht.View;
+using System;
 
 namespace Eindopdracht.ViewModel
 {
@@ -11,6 +12,7 @@ namespace Eindopdracht.ViewModel
         private EquipmentListViewModel _equipmentList;
 
         public EquipmentViewModel Equipment { get; set; }
+        Random ran = new Random();
 
         public ICommand AddEquipmentCommand { get; set; }
         
@@ -28,7 +30,8 @@ namespace Eindopdracht.ViewModel
             {
                 var equipment = (Equipment)Equipment.ToModel();
                 //Even aan entity framework laten weten dat we dingen hebben aangepast!
-                context.Entry(equipment).State = EntityState.Modified;
+                context.Entry(equipment).State = EntityState.Added;
+                equipment.Id = ran.Next(1, 1000000000);
                 context.Equipments.Add(equipment);
                 context.SaveChanges();
             }
