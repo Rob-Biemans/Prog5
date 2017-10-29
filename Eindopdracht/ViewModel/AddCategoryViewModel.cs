@@ -1,6 +1,8 @@
-﻿using GalaSoft.MvvmLight.Command;
-using Eindopdracht.Model;
+﻿using Eindopdracht.Model;
 using System.Windows.Input;
+using System.Data.Entity;
+using Eindopdracht.View;
+using GalaSoft.MvvmLight.Command;
 
 namespace Eindopdracht.ViewModel
 {
@@ -16,13 +18,19 @@ namespace Eindopdracht.ViewModel
         {
             this._CategoryList = CategoryList;
             this.Category = new CategoryViewModel();
-            AddCategoryCommand = new RelayCommand(AddCategory, CanAddCategory);
+            AddCategoryCommand = new RelayCommand<AddCategoryWindow>(AddCategory);
         }
 
-        private void AddCategory()
+        private void AddCategory(AddCategoryWindow window)
         {
-            _CategoryList.Categorys.Add(Category);
-            _CategoryList.HideAddCategory();
+            using (var context = new EntitiesEntities1())
+            {
+                var category = (Category)Category.ToModel();
+                //Even aan entity framework laten weten dat we dingen hebben aangepast!
+                context.Entry(category).State = EntityState.Modified;
+                context.Categories.Add(category);
+                context.SaveChanges();
+            }
         }
 
         public bool CanAddCategory()

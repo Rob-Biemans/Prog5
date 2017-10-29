@@ -28,7 +28,6 @@ namespace Eindopdracht.ViewModel
                 context.SaveChanges();
             }
 
-            window.Hide();
         }
 
     }

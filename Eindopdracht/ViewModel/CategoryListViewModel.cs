@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using Eindopdracht.View;
+using System.Data.Entity;
 
 namespace Eindopdracht.ViewModel
 {
@@ -62,7 +63,14 @@ namespace Eindopdracht.ViewModel
 
         private void DeleteCategory()
         {
-            Categorys.Remove(SelectedCategory);
+            using (var context = new EntitiesEntities1())
+            {
+                var category = (Category)_selectedCategory.ToModel();
+                //Even aan entity framework laten weten dat we dingen hebben aangepast!
+                context.Entry(category).State = EntityState.Modified;
+                context.Categories.Remove(category);
+                context.SaveChanges();
+            }
         }
 
         public void ShowEditCategory()

@@ -1,6 +1,9 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Eindopdracht.Model;
 using System.Windows.Input;
+using System.Data.Entity;
+using Eindopdracht.View;
+using System;
 
 namespace Eindopdracht.ViewModel
 {
@@ -16,13 +19,19 @@ namespace Eindopdracht.ViewModel
         {
             this._ninjaList = NinjaList;
             this.Ninja = new NinjaViewModel();
-            AddNinjaCommand = new RelayCommand(AddNinja, CanAddNinja);
+            AddNinjaCommand = new RelayCommand<AddNinjaWindow>(AddNinja);
         }
 
-        private void AddNinja()
+        private void AddNinja(AddNinjaWindow window)
         {
-            _ninjaList.Ninjas.Add(Ninja);
-            _ninjaList.HideAddNinja();
+            using (var context = new EntitiesEntities1())
+            {
+                var ninja = (Ninja)Ninja.ToModel();
+                //Even aan entity framework laten weten dat we dingen hebben aangepast!
+                context.Entry(ninja).State = EntityState.Modified;
+                context.Ninjas.Add(ninja);
+                context.SaveChanges();
+            }
         }
 
         public bool CanAddNinja()

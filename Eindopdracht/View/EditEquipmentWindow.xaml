@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eindopdracht.View"
         mc:Ignorable="d"
-        Title="EditEquipmentWindow" Height="382.418" Width="300"
+        Title="EditEquipmentWindow" Height="503.237" Width="300"
         DataContext="{Binding UpdateEquipment, Source={StaticResource Locator}}">
     <Border BorderThickness="12">
         <StackPanel>
@@ -32,6 +32,8 @@
 
             <TextBlock Text="Intelligence:" Margin="0,5,0,0"  />
             <TextBox Text="{Binding Equipment.Intelligence, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+            <Button x:Name="btnSave" Content="Save" Command="{Binding SaveCommand}" />
+
         </StackPanel>
     </Border>
 </Window>
