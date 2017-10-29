@@ -19,7 +19,6 @@ namespace Eindopdracht.ViewModel
         public int Id
         {
             get { return _inventory.Id; }
-            set { _inventory.Id = value; base.RaisePropertyChanged("Id"); }
         }
 
         public int NinjaId

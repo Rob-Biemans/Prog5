@@ -87,8 +87,10 @@ namespace Eindopdracht.ViewModel
             if (SelectedEquipment == null)
                 return;
             Ninja.Currency += SelectedEquipment.Price;
+            
             Ninja.SellEquipment(SelectedEquipment);
             NinjaEquipment.Remove(SelectedEquipment);
+            
             BuyMessage = "Item sold!";
         }
 
@@ -106,7 +108,9 @@ namespace Eindopdracht.ViewModel
                 InventoryViewModel inventory = new InventoryViewModel(SelectedEquipment.Id, Ninja.Id);
                 using (var context = new EntitiesEntities1())
                 {
+                    Random ran = new Random();
                     Inventory row = (Inventory)inventory.ToModel();
+                    row.Id = ran.Next(1,1000000000);
                     context.Inventories.Add(row);
                     context.SaveChanges();
                 }
