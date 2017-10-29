@@ -14,6 +14,16 @@ namespace Eindopdracht
     
     public partial class Inventory
     {
+        public Inventory()
+        {
+
+        }
+        public Inventory(int id1, int id2)
+        {
+            NinjaID = id2;
+            EquipmentID = id1;
+        }
+
         public int Id { get; set; }
         public int NinjaID { get; set; }
         public int EquipmentID { get; set; }

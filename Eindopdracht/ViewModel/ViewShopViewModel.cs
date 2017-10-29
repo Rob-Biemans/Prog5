@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,6 @@ namespace Eindopdracht.ViewModel
         public NinjaViewModel Ninja { get; set; }
         public EquipmentListViewModel EquipmentList { get; set; }
         public CategoryListViewModel CategoryList { get; set; }
-        //public CategoryViewModel SelectedCategory { get { return _selectedCategory; } set { _selectedCategory = value; CategoryEquipment = ShowCategoryEquipment(); } }
         public CategoryViewModel SelectedCategory { get { return _selectedCategory; } set { _selectedCategory = value; _showEquipment = ChangeEquipment(); } }
         public EquipmentViewModel SelectedEquipment
         {
@@ -45,40 +45,53 @@ namespace Eindopdracht.ViewModel
             set { _showEquipment = value; base.RaisePropertyChanged(); }
         }
 
-        //public EquipmentListViewModel NinjaEquipment
-        //{
-        //    get { return _ninjaEquipment; }
-        //    set { _ninjaEquipment = value; base.RaisePropertyChanged(); }
-        //}
-
         public ObservableCollection<EquipmentViewModel> NinjaEquipment { get; set; }
 
         public ICommand ShowCategoryEquipmentCommand;
         public ICommand BuyEquipmentCommand { get; set; }
         public ICommand SellEquipmentCommand { get; set; }
+        public ICommand SellAllEquipmentCommand { get; set; }
 
         public ViewShopViewModel(NinjaViewModel selectedNinja, EquipmentListViewModel equipmentList, CategoryListViewModel categoryList)
         {
             this.Ninja = selectedNinja;
-            //this.NinjaEquipment = new ObservableCollection<EquipmentViewModel>();
             this.NinjaEquipment = Ninja.ConvertInventory();
             this.EquipmentList = equipmentList;
             this.CategoryList = categoryList;
             this.BuyMessage = "Select an item in the list to purchase";
 
-            //ShowCategoryEquipmentCommand = new RelayCommand(ShowCategoryEquipment);
             BuyEquipmentCommand = new RelayCommand(BuyEquipment);
             SellEquipmentCommand = new RelayCommand(SellEquipment);
+            SellAllEquipmentCommand = new RelayCommand(SellAllEquipment);
         }
-        
+
+        private void SellAllEquipment()
+        {
+            Ninja.SellAllEquipment();
+            NinjaEquipment.Clear();
+            List<InventoryViewModel> inventory = new List<InventoryViewModel>();
+            Ninja.Inventory.ForEach(i => {
+                using (var context = new EntitiesEntities1())
+                {
+                    Inventory row = (Inventory)new InventoryViewModel(i.Id, Ninja.Id).ToModel();
+                    context.Inventories.Remove(row);
+                    context.SaveChanges();
+                }
+            });
+            
+            BuyMessage = "Items sold!";
+        }
 
         private void SellEquipment()
         {
             if (SelectedEquipment == null)
                 return;
             Ninja.Currency += SelectedEquipment.Price;
+            
             Ninja.SellEquipment(SelectedEquipment);
             NinjaEquipment.Remove(SelectedEquipment);
+            
+            BuyMessage = "Item sold!";
         }
 
         public void BuyEquipment()
@@ -91,7 +104,18 @@ namespace Eindopdracht.ViewModel
                 
                 Ninja.Currency -= SelectedEquipment.Price;
                 NinjaEquipment.Add(SelectedEquipment);
+                
+                InventoryViewModel inventory = new InventoryViewModel(SelectedEquipment.Id, Ninja.Id);
+                using (var context = new EntitiesEntities1())
+                {
+                    Random ran = new Random();
+                    Inventory row = (Inventory)inventory.ToModel();
+                    row.Id = ran.Next(1,1000000000);
+                    context.Inventories.Add(row);
+                    context.SaveChanges();
+                }
                 BuyMessage = "Equipment Purchased!";
+
             }
             else
             {
@@ -103,14 +127,10 @@ namespace Eindopdracht.ViewModel
         {
             return;
         }
+        
 
-        //public EquipmentListViewModel ShowCategoryEquipment()
-        //{
-        //    //return CategoryList.Categorys.Where(c => c.Id == SelectedCategory.Id);
-        //}
         private List<EquipmentViewModel> ChangeEquipment()
         {
-            //ShowEquipment.Equipments = new ObservableCollection<EquipmentViewModel>(EquipmentList.Equipments.Where(c => c.Id == SelectedCategory.Id));
             ShowEquipment = EquipmentList.Equipments.Where(e => e.Category == SelectedCategory.Id).ToList();
             return ShowEquipment;
         }
