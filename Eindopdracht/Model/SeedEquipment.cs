@@ -8,6 +8,20 @@ namespace Eindopdracht.Model
 {
     class SeedEquipment : IEquipmentRepository
     {
+        public List<Equipment> GetInventory(int ninjaId)
+        {
+            using (var context = new EntitiesEntities1())
+            {
+                List<Inventory> inv = context.Inventories.ToList().Where(i => i.NinjaID == ninjaId).ToList();
+                List<Equipment> equipment = new List<Equipment>();
+                inv.ForEach(i => {
+                    equipment.Add(context.Equipments.Where(e => e.Id == i.EquipmentID).First());
+                });
+                return equipment;
+            }
+        }
+        
+
         public List<Equipment> GetEquipments()
         {
             using (var context = new EntitiesEntities1())

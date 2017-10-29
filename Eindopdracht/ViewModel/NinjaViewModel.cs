@@ -2,6 +2,8 @@
 using Eindopdracht.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Collections.Generic;
+using Eindopdracht.ViewModel;
 
 namespace Eindopdracht.Model
 {
@@ -41,10 +43,16 @@ namespace Eindopdracht.Model
             set { _inteligence = value; RaisePropertyChanged("Intelligence"); }
         }
 
+
         public int InventoryID
         {
             get { return _inventoryID; }
             set { _inventoryID = value; RaisePropertyChanged("InventoryID"); }
+        }
+        public List<Equipment> Inventory
+        {
+            get { return _ninja.Inventory; }
+            set { _ninja.Inventory = value; }
         }
 
         private Ninja _ninja;
@@ -66,38 +74,52 @@ namespace Eindopdracht.Model
         public NinjaViewModel(Ninja ninja)
         {
             this._ninja = ninja;
-            //this._strenght = CalculateStrength();
-            //this._agility = CalculateAgility();
-            //this._inteligence = CalculateIntelligence();
-            //this._ninja.Currency = CalculateCurrency();
+            this._ninja.Inventory = new SeedEquipment().GetInventory(_ninja.Id);
+            this._strenght = CalculateStrength();
+            this._agility = CalculateAgility();
+            this._inteligence = CalculateIntelligence();
+            this._ninja.Currency = CalculateCurrency();
         }
 
-        //public int CalculateStrength()
-        //{
-        //    int totalStrenght = 0;
-        //    this._ninja.Inventory.ForEach(e => totalStrenght += e.Strenght);
-        //    return totalStrenght;
-        //}
+        public int CalculateStrength()
+        {
+            int totalStrenght = 0;
+            this._ninja.Inventory.ForEach(e => totalStrenght += e.Strenght);
+            return totalStrenght;
+        }
 
-        //public int CalculateAgility()
-        //{
-        //    int totalAgility = 0;
-        //    this._ninja.Inventory.ForEach(e => totalAgility += e.Agility);
-        //    return totalAgility;
-        //}
+        public int CalculateAgility()
+        {
+            int totalAgility = 0;
+            this._ninja.Inventory.ForEach(e => totalAgility += e.Agility);
+            return totalAgility;
+        }
 
-        //public int CalculateIntelligence()
-        //{
-        //    int totalIntelligence = 0;
-        //    this._ninja.Inventory.ForEach(e => totalIntelligence += e.Intelligence);
-        //    return totalIntelligence;
-        //}
+        public int CalculateIntelligence()
+        {
+            int totalIntelligence = 0;
+            this._ninja.Inventory.ForEach(e => totalIntelligence += e.Intelligence);
+            return totalIntelligence;
+        }
+        public int CalculateCurrency()
+        {
+            int totalCurrency = _ninja.Currency;
+            this._ninja.Inventory.ForEach(e => totalCurrency += e.Price);
+            return totalCurrency;
+        }
 
-        //public int CalculateCurrency()
-        //{
-        //    int totalCurrency = _ninja.Currency;
-        //    this._ninja.Inventory.ForEach(e => totalCurrency += e.Price);
-        //    return totalCurrency;
-        //}
+        public void AddEquipment(EquipmentViewModel equipment)
+        {
+                Equipment newEquipment = new Equipment();
+                newEquipment.Id = equipment.Id;
+                newEquipment.Name = equipment.Name;
+                newEquipment.Price = equipment.Price;
+                newEquipment.Strenght = equipment.Strenght;
+                newEquipment.Intelligence = equipment.Intelligence;
+                newEquipment.Agility = equipment.Agility;
+
+               
+                Inventory.Add(newEquipment);
+        }
     }
 }

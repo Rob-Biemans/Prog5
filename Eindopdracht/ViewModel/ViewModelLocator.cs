@@ -48,6 +48,14 @@ namespace Eindopdracht.ViewModel
             }
         }
 
+        public ViewShopViewModel ViewShop
+        {
+            get
+            {
+                return new ViewShopViewModel(NinjaList.SelectedNinja, EquipmentList, CategoryList);
+            }
+        }
+
         public EquipmentListViewModel EquipmentList
         {
             get

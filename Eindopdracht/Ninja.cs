@@ -18,5 +18,6 @@ namespace Eindopdracht
         public string Name { get; set; }
         public int Currency { get; set; }
         public int InventoryID { get; set; }
+        public List<Equipment> Inventory { get; set; }
     }
 }
