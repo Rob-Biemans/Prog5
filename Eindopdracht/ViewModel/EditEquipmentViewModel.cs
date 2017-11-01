@@ -23,7 +23,7 @@ namespace Eindopdracht.ViewModel
             using (var context = new EntitiesEntities1())
             {
                 var equipment = Equipment.ToModel();
-                //Even aan entity framework laten weten dat we dingen hebben aangepast!
+
                 context.Entry(equipment).State = EntityState.Modified;
                 context.SaveChanges();
             }

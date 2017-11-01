@@ -28,11 +28,13 @@ namespace Eindopdracht.ViewModel
             using (var context = new EntitiesEntities1())
             {
                 var category = (Category)Category.ToModel();
-                //Even aan entity framework laten weten dat we dingen hebben aangepast!
+
                 context.Entry(category).State = EntityState.Added;
                 category.Id = ran.Next(1, 1000000000);
                 context.Categories.Add(category);
                 context.SaveChanges();
+
+                _CategoryList.HideAddCategory();
             }
         }
 

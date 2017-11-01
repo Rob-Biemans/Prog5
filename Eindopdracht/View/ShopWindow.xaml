@@ -9,9 +9,13 @@
         DataContext="{Binding ViewShop, Source={StaticResource Locator}}">
     <Border>
         <StackPanel>
-            <StackPanel>
+            <Grid>
+
+                <Button x:Name="btnEquipment" Command="{Binding ShowViewEquipmentCommand}" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Equipment" Margin="318,8,12,12"  Width="75" Height="25"/>
+
                 <TextBlock x:Name="txtTitel" HorizontalAlignment="Left" Margin="10,12,0,0" TextWrapping="Wrap" Text="The Shop" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
-            </StackPanel>
+
+            </Grid>
             <DockPanel Height="235">
                 <DockPanel DockPanel.Dock="Left" Width="120">
                     <!-- Categorieen -->

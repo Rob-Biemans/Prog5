@@ -29,11 +29,13 @@ namespace Eindopdracht.ViewModel
             using (var context = new EntitiesEntities1())
             {
                 var equipment = (Equipment)Equipment.ToModel();
-                //Even aan entity framework laten weten dat we dingen hebben aangepast!
+
                 context.Entry(equipment).State = EntityState.Added;
                 equipment.Id = ran.Next(1, 1000000000);
                 context.Equipments.Add(equipment);
                 context.SaveChanges();
+
+                this._equipmentList.HideAddEquipment();
             }
         }
 

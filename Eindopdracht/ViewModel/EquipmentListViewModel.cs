@@ -39,7 +39,6 @@ namespace Eindopdracht.ViewModel
         public ICommand DeleteEquipmentCommand { get; set; }
         public ICommand ShowEditEquipmentCommand { get; set; }
         public ICommand ShowViewEquipmentCommand { get; set; }
-
         public ICommand ShowViewCategoriesCommand { get; set; }
 
         public EquipmentListViewModel()
@@ -84,7 +83,7 @@ namespace Eindopdracht.ViewModel
             using (var context = new EntitiesEntities1())
             {
                 var equipment = (Equipment)_selectedEquipment.ToModel();
-                //Even aan entity framework laten weten dat we dingen hebben aangepast!
+
                 context.Entry(equipment).State = EntityState.Deleted;
                 context.Equipments.Remove(equipment);
                 context.SaveChanges();

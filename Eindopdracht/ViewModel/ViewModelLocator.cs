@@ -48,11 +48,11 @@ namespace Eindopdracht.ViewModel
             }
         }
 
-        public ViewShopViewModel ViewShop
+        public ShopViewModel ViewShop
         {
             get
             {
-                return new ViewShopViewModel(NinjaList.SelectedNinja, EquipmentList, CategoryList);
+                return new ShopViewModel(NinjaList.SelectedNinja, EquipmentList, CategoryList);
             }
         }
 

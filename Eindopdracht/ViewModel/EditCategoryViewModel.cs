@@ -23,9 +23,12 @@ namespace Eindopdracht.ViewModel
             using (var context = new EntitiesEntities1())
             {
                 var category = Category.ToModel();
-                //Even aan entity framework laten weten dat we dingen hebben aangepast!
+
                 context.Entry(category).State = EntityState.Modified;
                 context.SaveChanges();
+
+                //window.Close();
+
             }
 
         }

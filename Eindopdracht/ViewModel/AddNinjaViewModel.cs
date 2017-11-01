@@ -28,11 +28,13 @@ namespace Eindopdracht.ViewModel
             using (var context = new EntitiesEntities1())
             {
                 var ninja = (Ninja)Ninja.ToModel();
-                //Even aan entity framework laten weten dat we dingen hebben aangepast!
+
                 context.Entry(ninja).State = EntityState.Added;
                 ninja.Id = ran.Next(1, 1000000000);
                 context.Ninjas.Add(ninja);
                 context.SaveChanges();
+
+                this._ninjaList.HideAddNinja();
             }
         }
 
