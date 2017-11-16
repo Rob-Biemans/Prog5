@@ -4,6 +4,7 @@ using System.Windows.Input;
 using System.Data.Entity;
 using Eindopdracht.View;
 using System;
+using System.Reflection;
 
 namespace Eindopdracht.ViewModel
 {
@@ -12,7 +13,6 @@ namespace Eindopdracht.ViewModel
         private NinjaListViewModel _ninjaList;
 
         public NinjaViewModel Ninja { get; set; }
-        Random ran = new Random();
 
         public ICommand AddNinjaCommand { get; set; }
 
@@ -27,13 +27,8 @@ namespace Eindopdracht.ViewModel
         {
             using (var context = new EntitiesEntities1())
             {
-                var ninja = (Ninja)Ninja.ToModel();
-
-                context.Entry(ninja).State = EntityState.Added;
-                ninja.Id = ran.Next(1, 1000000000);
-                context.Ninjas.Add(ninja);
+                context.Ninjas.Add((Ninja)Ninja.ToModel());
                 context.SaveChanges();
-
                 this._ninjaList.HideAddNinja();
             }
         }

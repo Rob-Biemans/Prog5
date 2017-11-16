@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[Equipment](
-	[Id] [int] NOT NULL,
+	[Id] [int] NOT NULL IDENTITY(1,1),
 	[Category] [int] NOT NULL,
 	[Name] [varchar](255) NOT NULL,
 	[Price] [int] NOT NULL,

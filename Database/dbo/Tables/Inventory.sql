@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[Inventory](
-	[Id] [int] NOT NULL,
+	[Id] [int] NOT NULL IDENTITY(1,1),
 	[NinjaID] [int] NOT NULL,
 	[EquipmentID] [int] NOT NULL,
  CONSTRAINT [PK_Inventory] PRIMARY KEY CLUSTERED 

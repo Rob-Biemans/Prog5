@@ -12,7 +12,6 @@ namespace Eindopdracht.ViewModel
         private CategoryListViewModel _CategoryList;
 
         public CategoryViewModel Category { get; set; }
-        Random ran = new Random();
 
         public ICommand AddCategoryCommand { get; set; }
 
@@ -27,13 +26,8 @@ namespace Eindopdracht.ViewModel
         {
             using (var context = new EntitiesEntities1())
             {
-                var category = (Category)Category.ToModel();
-
-                context.Entry(category).State = EntityState.Added;
-                category.Id = ran.Next(1, 1000000000);
-                context.Categories.Add(category);
+                context.Categories.Add((Category)Category.ToModel());
                 context.SaveChanges();
-
                 _CategoryList.HideAddCategory();
             }
         }

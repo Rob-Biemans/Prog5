@@ -12,7 +12,6 @@ namespace Eindopdracht.ViewModel
         private EquipmentListViewModel _equipmentList;
 
         public EquipmentViewModel Equipment { get; set; }
-        Random ran = new Random();
 
         public ICommand AddEquipmentCommand { get; set; }
         
@@ -28,13 +27,8 @@ namespace Eindopdracht.ViewModel
         {
             using (var context = new EntitiesEntities1())
             {
-                var equipment = (Equipment)Equipment.ToModel();
-
-                context.Entry(equipment).State = EntityState.Added;
-                equipment.Id = ran.Next(1, 1000000000);
-                context.Equipments.Add(equipment);
+                context.Equipments.Add((Equipment)Equipment.ToModel());
                 context.SaveChanges();
-
                 this._equipmentList.HideAddEquipment();
             }
         }
