@@ -41,8 +41,12 @@ namespace Eindopdracht.ViewModel
         public CategoryListViewModel()
         {
             CategoryRepository = new SeedCategory();
-            var CategoryList = CategoryRepository.GetCategories().Select(e => new CategoryViewModel(e));
-            Categorys = new ObservableCollection<CategoryViewModel>(CategoryList);
+
+            using (var context = new EntitiesEntities1())
+            {
+                var categories = context.Categories.ToList();
+                Categorys = new ObservableCollection<CategoryViewModel>(categories.Select(c => new CategoryViewModel(c)));
+            }
 
             ShowAddCategoryCommand = new RelayCommand(ShowAddCategory, CanShowAddCategory);
             DeleteCategoryCommand = new RelayCommand(DeleteCategory);

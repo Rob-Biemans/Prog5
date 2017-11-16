@@ -44,8 +44,12 @@ namespace Eindopdracht.ViewModel
         public EquipmentListViewModel()
         {
             equipmentRepository = new SeedEquipment();
-            var equipmentList = equipmentRepository.GetEquipments().Select(e => new EquipmentViewModel(e));
-            Equipments = new ObservableCollection<EquipmentViewModel>(equipmentList);
+
+            using (var context = new EntitiesEntities1())
+            {
+                var equipments = context.Equipments.ToList();
+                Equipments = new ObservableCollection<EquipmentViewModel>(equipments.Select(e => new EquipmentViewModel(e)));
+            }
 
             ShowAddEquipmentCommand = new RelayCommand(ShowAddEquipment, CanShowAddEquipment);
             DeleteEquipmentCommand = new RelayCommand(DeleteEquipment);

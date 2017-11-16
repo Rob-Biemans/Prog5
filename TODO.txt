@@ -4,6 +4,6 @@ Equipment CRUD (List auto updaten onchange)
 Ninja Inventory (Collection van maken ipv this.Inventory)
 #Database IDs fixen
 #Bij toevoegen van nieuwe records, verdwijnt het scherm
-
+Bij equipment de category naam tonen ipv ID (view, update en in de list van equipments)
 
 # = DONE

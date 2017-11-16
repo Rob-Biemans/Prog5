@@ -7,8 +7,17 @@ namespace Eindopdracht.ViewModel
 {
     public class ViewModelLocator
     {
-        static ViewModelLocator()
+
+        private NinjaListViewModel _ninjaList;
+        private EquipmentListViewModel _equipmentList;
+        private CategoryListViewModel _categoryList;
+
+        public ViewModelLocator()
         {
+            _ninjaList = new ViewModel.NinjaListViewModel();
+            _equipmentList = new EquipmentListViewModel();
+            _categoryList = new CategoryListViewModel();
+
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register<NinjaListViewModel>();
@@ -20,7 +29,7 @@ namespace Eindopdracht.ViewModel
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<NinjaListViewModel>();
+                return _ninjaList;
             }
         }
 
@@ -28,7 +37,7 @@ namespace Eindopdracht.ViewModel
         {
             get
             {
-                return new EditNinjaViewModel(NinjaList.SelectedNinja);
+                return new EditNinjaViewModel(_ninjaList.SelectedNinja);
             }
         }
 
@@ -36,7 +45,7 @@ namespace Eindopdracht.ViewModel
         {
             get
             { 
-                return new AddNinjaViewModel(this.NinjaList);
+                return new AddNinjaViewModel(_ninjaList);
             }
         }
 
@@ -44,7 +53,7 @@ namespace Eindopdracht.ViewModel
         {
             get
             {
-                return new ViewNinjaViewModel(NinjaList.SelectedNinja);
+                return new ViewNinjaViewModel(_ninjaList.SelectedNinja);
             }
         }
 
@@ -52,7 +61,7 @@ namespace Eindopdracht.ViewModel
         {
             get
             {
-                return new ShopViewModel(NinjaList.SelectedNinja, EquipmentList, CategoryList);
+                return new ShopViewModel(_ninjaList.SelectedNinja, _equipmentList, _categoryList);
             }
         }
 
@@ -60,7 +69,7 @@ namespace Eindopdracht.ViewModel
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<EquipmentListViewModel>();
+                return _equipmentList;
             }
         }
 
@@ -68,7 +77,7 @@ namespace Eindopdracht.ViewModel
         {
             get
             {
-                return new EditEquipmentViewModel(EquipmentList.SelectedEquipment);
+                return new EditEquipmentViewModel(_equipmentList.SelectedEquipment);
             }
         }
 
@@ -76,7 +85,7 @@ namespace Eindopdracht.ViewModel
         {
             get
             {
-                return new AddEquipmentViewModel(this.EquipmentList);
+                return new AddEquipmentViewModel(_equipmentList);
             }
         }
 
@@ -84,7 +93,7 @@ namespace Eindopdracht.ViewModel
         {
             get
             {
-                return new ViewEquipmentViewModel(EquipmentList.SelectedEquipment);
+                return new ViewEquipmentViewModel(_equipmentList.SelectedEquipment);
             }
         }
 
@@ -93,7 +102,7 @@ namespace Eindopdracht.ViewModel
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<CategoryListViewModel>();
+                return _categoryList;
             }
         }
 
@@ -101,7 +110,7 @@ namespace Eindopdracht.ViewModel
         {
             get
             {
-                return new EditCategoryViewModel(CategoryList.SelectedCategory);
+                return new EditCategoryViewModel(_categoryList.SelectedCategory);
             }
         }
 
@@ -109,7 +118,7 @@ namespace Eindopdracht.ViewModel
         {
             get
             {
-                return new AddCategoryViewModel(this.CategoryList);
+                return new AddCategoryViewModel(_categoryList);
             }
         }
 

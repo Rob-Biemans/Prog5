@@ -43,8 +43,12 @@ namespace Eindopdracht.ViewModel
         public NinjaListViewModel()
         {
             ninjaRepository = new SeedNinja();
-            var ninjaList = ninjaRepository.GetNinjas().Select(s => new NinjaViewModel(s));
-            Ninjas = new ObservableCollection<NinjaViewModel>(ninjaList);
+
+            using (var context = new EntitiesEntities1())
+            {
+                var ninjas = context.Ninjas.ToList();
+                Ninjas = new ObservableCollection<NinjaViewModel>(ninjas.Select(n => new NinjaViewModel(n)));
+            }
 
             ShowAddNinjaCommand = new RelayCommand(ShowAddNinja, CanShowAddNinja);
             DeleteNinjaCommand = new RelayCommand(DeleteNinja);
