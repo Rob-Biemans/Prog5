@@ -18,8 +18,6 @@ namespace Eindopdracht.ViewModel
         private AddEquipmentWindow _addEquipmentWindow;
         private OverviewCategoryWindow _overviewCategoryWindow;
 
-        IEquipmentRepository equipmentRepository;
-
         public ObservableCollection<EquipmentViewModel> Equipments { get; set; }
 
         private EquipmentViewModel _selectedEquipment;
@@ -43,7 +41,6 @@ namespace Eindopdracht.ViewModel
 
         public EquipmentListViewModel()
         {
-            equipmentRepository = new SeedEquipment();
 
             using (var context = new EntitiesEntities1())
             {

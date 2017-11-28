@@ -1,4 +1,5 @@
 ﻿using Eindopdracht.Model;
+using Eindopdracht.ViewModel;
 using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
@@ -57,6 +58,8 @@ namespace Eindopdracht.Model
         }
 
         private Equipment _equipment;
+        private EquipmentListViewModel _equipmentlist;
+
         public EquipmentViewModel()
         {
             _equipment = new Equipment();
@@ -65,6 +68,12 @@ namespace Eindopdracht.Model
         public EquipmentViewModel(Equipment equipment)
         {
             _equipment = equipment;
+        }
+
+        public EquipmentViewModel(Equipment equipment, EquipmentListViewModel equipmentlist)
+        {
+            _equipment = equipment;
+            _equipmentlist = equipmentlist;
         }
 
     }

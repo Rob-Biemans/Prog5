@@ -17,8 +17,6 @@ namespace Eindopdracht.ViewModel
     {
         private AddCategoryWindow _addCategoryWindow;
 
-        ICategoriesRepository CategoryRepository;
-
         public ObservableCollection<CategoryViewModel> Categorys { get; set; }
 
         private CategoryViewModel _selectedCategory;
@@ -40,7 +38,6 @@ namespace Eindopdracht.ViewModel
 
         public CategoryListViewModel()
         {
-            CategoryRepository = new SeedCategory();
 
             using (var context = new EntitiesEntities1())
             {

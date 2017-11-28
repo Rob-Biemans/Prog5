@@ -23,6 +23,17 @@ namespace Eindopdracht.ViewModel
         }
 
         private Category _category;
+        private CategoryListViewModel _categoryList;
+
+        public CategoryViewModel(Category category, CategoryListViewModel categorylist)
+        {
+            _category = category;
+        }
+
+        public CategoryViewModel(CategoryListViewModel categorylist)
+        {
+            _categoryList = categorylist;
+        }
 
         public CategoryViewModel(Category category)
         {

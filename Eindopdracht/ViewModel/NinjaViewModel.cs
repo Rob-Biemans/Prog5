@@ -58,6 +58,7 @@ namespace Eindopdracht.Model
         }
 
         private Ninja _ninja;
+        private NinjaListViewModel _ninjalist;
         private int _strenght;
         private int _agility;
         private int _inteligence;
@@ -76,6 +77,17 @@ namespace Eindopdracht.Model
         public NinjaViewModel(Ninja ninja)
         {
             this._ninja = ninja;
+            this._ninja.Inventory = new SeedEquipment().GetInventory(_ninja.Id);
+            this._strenght = CalculateStrength();
+            this._agility = CalculateAgility();
+            this._inteligence = CalculateIntelligence();
+            this._ninja.Currency = CalculateCurrency();
+        }
+
+        public NinjaViewModel(Ninja ninja, NinjaListViewModel ninjalist)
+        {
+            this._ninja = ninja;
+            this._ninjalist = ninjalist;
             this._ninja.Inventory = new SeedEquipment().GetInventory(_ninja.Id);
             this._strenght = CalculateStrength();
             this._agility = CalculateAgility();

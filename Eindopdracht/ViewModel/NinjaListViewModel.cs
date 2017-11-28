@@ -17,8 +17,6 @@ namespace Eindopdracht.ViewModel
     {
         private AddNinjaWindow _addNinjaWindow;
 
-        INinjaRepository ninjaRepository;
-
         public ObservableCollection<NinjaViewModel> Ninjas { get; set; }
 
         private NinjaViewModel _selectedNinja;
@@ -42,7 +40,6 @@ namespace Eindopdracht.ViewModel
 
         public NinjaListViewModel()
         {
-            ninjaRepository = new SeedNinja();
 
             using (var context = new EntitiesEntities1())
             {
