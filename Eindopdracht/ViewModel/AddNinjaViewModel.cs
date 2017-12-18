@@ -20,17 +20,18 @@ namespace Eindopdracht.ViewModel
         {
             this._ninjaList = NinjaList;
             this.Ninja = new NinjaViewModel();
-            AddNinjaCommand = new RelayCommand(AddNinja);
+            AddNinjaCommand = new RelayCommand<AddNinjaWindow>(AddNinja);
         }
 
-        private void AddNinja()
+        private void AddNinja(AddNinjaWindow window)
         {
             using (var context = new EntitiesEntities1())
             {
                 context.Ninjas.Add((Ninja)Ninja.ToModel());
                 context.SaveChanges();
-                this._ninjaList.HideAddNinja();
             }
+            window.Close();
+            _ninjaList.OnChangeCollection();
         }
 
         public bool CanAddNinja()

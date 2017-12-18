@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Eindopdracht.View"
         mc:Ignorable="d"
         Title="EditEquipmentWindow" Height="503.237" Width="300"
-        DataContext="{Binding UpdateEquipment, Source={StaticResource Locator}}">
+        DataContext="{Binding UpdateEquipment, Source={StaticResource Locator}}"
+        Name="EditWindow">
     <Border BorderThickness="12">
         <StackPanel>
 
@@ -19,7 +20,7 @@
             <TextBox Text="{Binding Equipment.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
 
             <TextBlock Text="Category:" Margin="0,5,0,0"  />
-            <TextBox Text="{Binding Equipment.Category, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+            <ComboBox SelectedValue="{Binding Equipment.Category, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Categories}"></ComboBox>
 
             <TextBlock Text="Prijs:" Margin="0,5,0,0"  />
             <TextBox Text="{Binding Equipment.Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
@@ -32,7 +33,7 @@
 
             <TextBlock Text="Intelligence:" Margin="0,5,0,0"  />
             <TextBox Text="{Binding Equipment.Intelligence, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
-            <Button x:Name="btnSave" Content="Save" Command="{Binding SaveCommand}" />
+            <Button x:Name="btnSave" Content="Save" CommandParameter="{Binding ElementName=EditWindow}" Command="{Binding SaveCommand}" />
 
         </StackPanel>
     </Border>

@@ -301,6 +301,7 @@
       <DependentUpon>Entities.edmx</DependentUpon>
       <LastGenOutput>Entities.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="Entities.edmx.sql" />
     <Content Include="Entities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Entities.edmx</DependentUpon>

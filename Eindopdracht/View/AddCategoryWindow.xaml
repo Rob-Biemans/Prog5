@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Eindopdracht.View"
         mc:Ignorable="d"
         Title="AddCategoryWindow" Height="300" Width="300"
-        DataContext="{Binding AddCategory, Source={StaticResource Locator}}">
+        DataContext="{Binding AddCategory, Source={StaticResource Locator}}"
+        Name="AddWindow">
     <Border BorderThickness="12">
         <StackPanel>
 
@@ -15,7 +16,7 @@
             <TextBlock Text="Name:" Margin="0,5,0,0"  />
             <TextBox Text="{Binding Category.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
 
-            <Button Content="Add" Command="{Binding AddCategoryCommand}" CommandParameter="{Binding AddCategoryCommand}"
+            <Button Content="Add" Command="{Binding AddCategoryCommand}" CommandParameter="{Binding ElementName=AddWindow}"
                     Width="100"  HorizontalAlignment="Left" Margin="0,5,0,0" />
         </StackPanel>
     </Border>

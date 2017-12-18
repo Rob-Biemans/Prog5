@@ -20,17 +20,18 @@ namespace Eindopdracht.ViewModel
         {
             this._equipmentList = EquipmentList;
             this.Equipment = new EquipmentViewModel();
-            AddEquipmentCommand = new RelayCommand(AddEquipment);
+            AddEquipmentCommand = new RelayCommand<AddEquipmentWindow>(AddEquipment);
         }
 
-        private void AddEquipment()
+        private void AddEquipment(AddEquipmentWindow window)
         {
             using (var context = new EntitiesEntities1())
             {
                 context.Equipments.Add((Equipment)Equipment.ToModel());
                 context.SaveChanges();
-                this._equipmentList.HideAddEquipment();
             }
+            window.Close();
+            _equipmentList.OnChangeCollection();
         }
 
         public bool CanAddEquipment()

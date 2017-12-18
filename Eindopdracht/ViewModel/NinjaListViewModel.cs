@@ -55,6 +55,14 @@ namespace Eindopdracht.ViewModel
 
         }
 
+        public void OnChangeCollection()
+        {
+            Ninjas.Clear();
+            using (var context = new EntitiesEntities1())
+            {
+                context.Ninjas.ToList().ForEach(n => Ninjas.Add(new NinjaViewModel(n, this)));
+            }
+        }
 
         public bool CanShowViewEquipment()
         {
@@ -82,17 +90,13 @@ namespace Eindopdracht.ViewModel
                 context.Ninjas.Remove(ninja);
                 context.SaveChanges();
             }
+            OnChangeCollection();
         }
 
         public void ShowEditNinja()
         {
             var editNinja = new EditNinjaWindow();
             editNinja.Show();
-        }
-
-        public void HideAddNinja()
-        {
-            _addNinjaWindow.Close();
         }
 
         public void ShowViewNinja()

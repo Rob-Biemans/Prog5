@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[Category](
-	[Id] [int] NOT NULL IDENTITY(1,1),
+	[Id] [int] IDENTITY (1, 1) NOT NULL,
 	[Name] [varchar](255) NOT NULL,
  CONSTRAINT [PK_Category] PRIMARY KEY CLUSTERED 
 (

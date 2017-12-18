@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Equipment](
-	[Id] [int] NOT NULL IDENTITY(1,1),
-	[Category] [int] NOT NULL,
+	[Id] [int] IDENTITY (1, 1) NOT NULL,
+	[Category] [varchar](255) NOT NULL,
 	[Name] [varchar](255) NOT NULL,
 	[Price] [int] NOT NULL,
 	[Agility] [int] NOT NULL,

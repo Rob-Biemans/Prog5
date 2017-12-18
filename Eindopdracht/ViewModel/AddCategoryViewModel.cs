@@ -19,17 +19,18 @@ namespace Eindopdracht.ViewModel
         {
             this._CategoryList = CategoryList;
             this.Category = new CategoryViewModel();
-            AddCategoryCommand = new RelayCommand(AddCategory);
+            AddCategoryCommand = new RelayCommand<AddCategoryWindow>(AddCategory);
         }
 
-        private void AddCategory()
+        private void AddCategory(AddCategoryWindow window)
         {
             using (var context = new EntitiesEntities1())
             {
                 context.Categories.Add((Category)Category.ToModel());
                 context.SaveChanges();
-                _CategoryList.HideAddCategory();
             }
+            window.Close();
+            _CategoryList.OnChangeCollection();
         }
 
         public bool CanAddCategory()

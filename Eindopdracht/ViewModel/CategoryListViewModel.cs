@@ -51,6 +51,15 @@ namespace Eindopdracht.ViewModel
             ShowEditCategoryCommand = new RelayCommand(ShowEditCategory);
         }
 
+        public void OnChangeCollection()
+        {
+            Categorys.Clear();
+            using (var context = new EntitiesEntities1())
+            {
+                context.Categories.ToList().ForEach(c => Categorys.Add(new CategoryViewModel(c, this)));
+            }
+        }
+
         public bool CanShowAddCategory()
         {
             return _addCategoryWindow != null ? !_addCategoryWindow.IsVisible : true;
@@ -72,17 +81,13 @@ namespace Eindopdracht.ViewModel
                 context.Categories.Remove(category);
                 context.SaveChanges();
             }
+            OnChangeCollection();
         }
 
         public void ShowEditCategory()
         {
             var editCategory = new EditCategoryWindow();
             editCategory.Show();
-        }
-
-        public void HideAddCategory()
-        {
-            _addCategoryWindow.Close();
         }
 
     }

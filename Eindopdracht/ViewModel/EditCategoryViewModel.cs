@@ -26,9 +26,7 @@ namespace Eindopdracht.ViewModel
 
                 context.Entry(category).State = EntityState.Modified;
                 context.SaveChanges();
-
-                //window.Close();
-
+                window.Close();
             }
 
         }

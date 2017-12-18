@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Eindopdracht.View"
         mc:Ignorable="d"
         Title="AddEquipmentWindow" Height="404.67" Width="300"
-        DataContext="{Binding AddEquipment, Source={StaticResource Locator}}">
+        DataContext="{Binding AddEquipment, Source={StaticResource Locator}}"
+        Name="AddWindow">
     <Border BorderThickness="12">
         <StackPanel>
 
@@ -30,7 +31,7 @@
             <TextBlock Text="Intelligence:" Margin="0,5,0,0"  />
             <TextBox Text="{Binding Equipment.Intelligence, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
 
-            <Button Content="Add" Command="{Binding AddEquipmentCommand}" CommandParameter="{Binding AddEquipmentCommand}"
+            <Button Content="Add" Command="{Binding AddEquipmentCommand}" CommandParameter="{Binding ElementName=AddWindow}"
                     Width="100"  HorizontalAlignment="Left" Margin="0,5,0,0" />
         </StackPanel>
     </Border>

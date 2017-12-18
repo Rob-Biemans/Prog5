@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:Eindopdracht.View"
         mc:Ignorable="d"
         Title="EditNinjaWindow" Height="300" Width="300"
-        DataContext="{Binding UpdateNinja, Source={StaticResource Locator}}">
-
+        DataContext="{Binding UpdateNinja, Source={StaticResource Locator}}"
+        Name="EditWindow">
     <Border BorderThickness="12">
         <StackPanel>
 
@@ -21,7 +21,7 @@
 
             <TextBlock Text="Currency:" Margin="0,5,0,0"  />
             <TextBox Text="{Binding Ninja.Currency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
-            <Button x:Name="btnSave" Content="Save" Command="{Binding SaveCommand}"/>
+            <Button x:Name="btnSave" Content="Save" CommandParameter="{Binding ElementName=EditWindow}" Command="{Binding SaveCommand}"/>
         </StackPanel>
     </Border>
 

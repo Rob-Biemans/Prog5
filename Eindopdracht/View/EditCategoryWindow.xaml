@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Eindopdracht.View"
         mc:Ignorable="d"
         Title="EditCategoryWindow" Height="211.813" Width="300"
-        DataContext="{Binding UpdateCategory, Source={StaticResource Locator}}">
+        DataContext="{Binding UpdateCategory, Source={StaticResource Locator}}"
+        Name="EditWindow">
     <Border BorderThickness="12" Margin="0,0,0,76">
         <StackPanel Margin="0,0,0,-82">
 
@@ -17,7 +18,7 @@
 
             <TextBlock Text="Name:" Margin="0,5,0,0"  />
             <TextBox Text="{Binding Category.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
-            <Button x:Name="btnSave" Content="Save" Command="{Binding SaveCommand}" />
+            <Button x:Name="btnSave" Content="Save" CommandParameter="{Binding ElementName=EditWindow}" Command="{Binding SaveCommand}" />
 
         </StackPanel>
     </Border>

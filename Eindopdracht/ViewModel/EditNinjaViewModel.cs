@@ -26,6 +26,7 @@ namespace Eindopdracht.ViewModel
 
                 context.Entry(ninja).State = EntityState.Modified;
                 context.SaveChanges();
+                window.Close();
             }
 
         }

@@ -18,7 +18,7 @@ namespace Eindopdracht.Model
             set { _equipment.Id = value; RaisePropertyChanged("Id"); }
         }
 
-        public int Category
+        public string Category
         {
             get { return _equipment.Category; }
             set { _equipment.Category = value; RaisePropertyChanged("Category"); }

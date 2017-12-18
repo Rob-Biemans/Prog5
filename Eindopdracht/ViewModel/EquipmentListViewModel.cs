@@ -57,6 +57,15 @@ namespace Eindopdracht.ViewModel
             ShowViewCategoriesCommand = new RelayCommand(ShowViewCategory, CanShowViewCategory);
         }
 
+        public void OnChangeCollection()
+        {
+            Equipments.Clear();
+            using (var context = new EntitiesEntities1())
+            {
+                context.Equipments.ToList().ForEach(e => Equipments.Add(new EquipmentViewModel(e, this)));
+            }
+        }
+
         public void ShowViewCategory()
         {
             _overviewCategoryWindow = new OverviewCategoryWindow();
@@ -89,17 +98,13 @@ namespace Eindopdracht.ViewModel
                 context.Equipments.Remove(equipment);
                 context.SaveChanges();
             }
+            OnChangeCollection();
         }
 
         public void ShowEditEquipment()
         {
             var editEquipment = new EditEquipmentWindow();
             editEquipment.Show();
-        }
-
-        public void HideAddEquipment()
-        {
-            _addEquipmentWindow.Close();
         }
 
         public void ShowViewEquipment()

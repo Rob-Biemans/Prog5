@@ -146,7 +146,7 @@ namespace Eindopdracht.ViewModel
 
         private List<EquipmentViewModel> ChangeEquipment()
         {
-            ShowEquipment = EquipmentList.Equipments.Where(e => e.Category == SelectedCategory.Id).ToList();
+            ShowEquipment = EquipmentList.Equipments.Where(e => e.Category == SelectedCategory.Name).ToList();
             return ShowEquipment;
         }
 
