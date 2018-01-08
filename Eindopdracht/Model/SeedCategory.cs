@@ -10,7 +10,7 @@ namespace Eindopdracht.Model
     {
         public List<Category> GetCategories()
         {
-            using (var context = new EntitiesEntities1())
+            using (var context = new Entities())
             {
                 return context.Categories.ToList();
             }

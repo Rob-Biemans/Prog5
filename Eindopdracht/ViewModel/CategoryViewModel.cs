@@ -50,5 +50,21 @@ namespace Eindopdracht.ViewModel
             _category = new Category();
         }
 
+        public ICollection<Equipment> Equipments
+        {
+            get { return _category.Equipments; }
+            set { _category.Equipments = value; }
+        }
+
+        public List<EquipmentViewModel> GetEquipment()
+        {
+            List<EquipmentViewModel> equipment = new List<EquipmentViewModel>();
+            using (var context = new Entities())
+            {
+                context.Equipments.Where(e => e.CategoryID == _category.Id).ToList().ForEach(e => equipment.Add(new EquipmentViewModel(e)));
+            }
+            return equipment;
+        }
+
     }
 }

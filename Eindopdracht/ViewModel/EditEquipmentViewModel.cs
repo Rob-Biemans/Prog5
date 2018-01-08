@@ -33,7 +33,7 @@ namespace Eindopdracht.ViewModel
 
         private void Save(EditEquipmentWindow window)
         {
-            using (var context = new EntitiesEntities1())
+            using (var context = new Entities())
             {
                 var equipment = Equipment.ToModel();
 
@@ -47,7 +47,7 @@ namespace Eindopdracht.ViewModel
         {
             _categories = new ObservableCollection<string>();
 
-            using (var context = new EntitiesEntities1())
+            using (var context = new Entities())
             {
                 context.Categories.ToList().ForEach(c => Categories.Add(c.Name));
             }

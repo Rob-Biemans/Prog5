@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Eindopdracht.ViewModel;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Eindopdracht.Model
 {
@@ -51,10 +52,10 @@ namespace Eindopdracht.Model
             get { return _inventoryID; }
             set { _inventoryID = value; RaisePropertyChanged("InventoryID"); }
         }
-        public List<Equipment> Inventory
+        public ICollection<Equipment> Inventory
         {
-            get { return _ninja.Inventory; }
-            set { _ninja.Inventory = value; }
+            get { return _ninja.Equipments; }
+            set { _ninja.Equipments = value; }
         }
 
         private Ninja _ninja;
@@ -74,10 +75,15 @@ namespace Eindopdracht.Model
             this._ninja = new Ninja();
         }
 
+        public ICollection<Equipment> Equipment
+        {
+            get { return _ninja.Equipments; }
+            set { _ninja.Equipments = value; RaisePropertyChanged("Equipment"); }
+        }
+
         public NinjaViewModel(Ninja ninja)
         {
             this._ninja = ninja;
-            this._ninja.Inventory = new SeedEquipment().GetInventory(_ninja.Id);
             this._strenght = CalculateStrength();
             this._agility = CalculateAgility();
             this._inteligence = CalculateIntelligence();
@@ -88,7 +94,6 @@ namespace Eindopdracht.Model
         {
             this._ninja = ninja;
             this._ninjalist = ninjalist;
-            this._ninja.Inventory = new SeedEquipment().GetInventory(_ninja.Id);
             this._strenght = CalculateStrength();
             this._agility = CalculateAgility();
             this._inteligence = CalculateIntelligence();
@@ -97,26 +102,19 @@ namespace Eindopdracht.Model
 
         public int CalculateStrength()
         {
-            int totalStrenght = 0;
-            this._ninja.Inventory.ForEach(e => totalStrenght += e.Strenght);
-            return totalStrenght;
+            int totalStrength = 0;
+            _ninja.Equipments.ToList().ForEach(e => totalStrength += e.Strenght);
+            return totalStrength;
         }
 
         public ObservableCollection<EquipmentViewModel> ConvertInventory()
         {
             ObservableCollection<EquipmentViewModel> collection = new ObservableCollection<EquipmentViewModel>();
-            Inventory.ForEach(i =>
-            {
-                collection.Add(new EquipmentViewModel(i));
-            });
             return collection;
         }
 
         internal void SellAllEquipment()
         {
-            Inventory.ForEach(e => {
-                Currency += e.Price;
-            });
             Inventory.Clear();
             Agility = CalculateAgility();
             Intelligence = CalculateIntelligence();
@@ -126,13 +124,12 @@ namespace Eindopdracht.Model
         public int CalculateAgility()
         {
             int totalAgility = 0;
-            this._ninja.Inventory.ForEach(e => totalAgility += e.Agility);
+            _ninja.Equipments.ToList().ForEach(e => totalAgility += e.Agility);
             return totalAgility;
         }
 
         public void SellEquipment(EquipmentViewModel selectedEquipment)
         {
-            Inventory.RemoveAll(i => i.Id == selectedEquipment.Id);
             Agility = CalculateAgility();
             Intelligence = CalculateIntelligence();
             Strength = CalculateStrength();
@@ -141,30 +138,40 @@ namespace Eindopdracht.Model
         public int CalculateIntelligence()
         {
             int totalIntelligence = 0;
-            this._ninja.Inventory.ForEach(e => totalIntelligence += e.Intelligence);
+            _ninja.Equipments.ToList().ForEach(e => totalIntelligence += e.Intelligence);
             return totalIntelligence;
         }
         public int CalculateCurrency()
         {
             int totalCurrency = _ninja.Currency;
-            this._ninja.Inventory.ForEach(e => totalCurrency += e.Price);
             return totalCurrency;
         }
 
         public void AddEquipment(EquipmentViewModel equipment)
         {
-            Equipment newEquipment = new Equipment();
-            newEquipment.Id = equipment.Id;
-            newEquipment.Name = equipment.Name;
-            newEquipment.Price = equipment.Price;
-            newEquipment.Strenght = equipment.Strenght;
-            newEquipment.Intelligence = equipment.Intelligence;
-            newEquipment.Agility = equipment.Agility;
-            
-            Inventory.Add(newEquipment);
-            Agility = CalculateAgility();
+            using (var context = new Entities())
+            {
+                var ninja = context.Ninjas.Find(_ninja.Id);
+                var eq = context.Equipments.Find(equipment.Id);
+                ninja.Equipments.Add(eq);
+                context.SaveChanges();
+            }
+
+                Agility = CalculateAgility();
             Intelligence = CalculateIntelligence();
             Strength = CalculateStrength();
+        }
+
+        // Get Ninja's Equipment
+        public ICollection<EquipmentViewModel> GetEquipment()
+        {
+            List<EquipmentViewModel> equipment = new List<EquipmentViewModel>();
+            using (var context = new Entities())
+            {
+                context.Ninjas.Find(_ninja.Id).Equipments.ToList().ForEach(e => equipment.Add(new EquipmentViewModel(e)));
+            }
+
+            return equipment;
         }
     }
 }

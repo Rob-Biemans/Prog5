@@ -26,7 +26,11 @@ namespace Eindopdracht.ViewModel
         public NinjaViewModel Ninja { get; set; }
         public EquipmentListViewModel EquipmentList { get; set; }
         public CategoryListViewModel CategoryList { get; set; }
-        public CategoryViewModel SelectedCategory { get { return _selectedCategory; } set { _selectedCategory = value; _showEquipment = ChangeEquipment(); } }
+        public CategoryViewModel SelectedCategory
+        {
+            get { return _selectedCategory; }
+            set { _selectedCategory = value; ShowEquipment = _selectedCategory.GetEquipment(); RaisePropertyChanged("SelectedCategory"); }
+        }
         public EquipmentViewModel SelectedEquipment
         {
             get { return _selectedEquipment; }
@@ -57,8 +61,9 @@ namespace Eindopdracht.ViewModel
         public ShopViewModel(NinjaViewModel selectedNinja, EquipmentListViewModel equipmentList, CategoryListViewModel categoryList)
         {
             this.Ninja = selectedNinja;
-            this.NinjaEquipment = Ninja.ConvertInventory();
-            this.EquipmentList = equipmentList;
+            this.NinjaEquipment = new ObservableCollection<EquipmentViewModel>(Ninja.GetEquipment().ToList());
+            // FIx this
+            this.EquipmentList = new EquipmentListViewModel(selectedNinja.GetEquipment());
             this.CategoryList = categoryList;
             this.BuyMessage = "Select an item in the list to purchase";
 
@@ -84,29 +89,37 @@ namespace Eindopdracht.ViewModel
         {
             Ninja.SellAllEquipment();
             NinjaEquipment.Clear();
-            List<InventoryViewModel> inventory = new List<InventoryViewModel>();
-            Ninja.Inventory.ForEach(i => {
-                using (var context = new EntitiesEntities1())
-                {
-                    Inventory row = (Inventory)new InventoryViewModel(i.Id, Ninja.Id).ToModel();
-                    context.Inventories.Remove(row);
-                    context.SaveChanges();
-                }
-            });
-            
+
+            using (var context = new Entities())
+            {
+                var ninja = context.Ninjas.Find(Ninja.Id);
+                ninja.Equipments.Clear();
+                context.SaveChanges();
+            }
+
             BuyMessage = "Items sold!";
         }
 
         private void SellEquipment()
         {
+            
             if (SelectedEquipment == null)
                 return;
+                
+
+            using (var context = new Entities())
+            {
+                var ninja = context.Ninjas.Find(Ninja.Id);
+                var eq = context.Equipments.Find(SelectedEquipment.Id);
+                ninja.Equipments.Remove(eq);
+                context.SaveChanges();
+            }
             Ninja.Currency += SelectedEquipment.Price;
-            
+
             Ninja.SellEquipment(SelectedEquipment);
             NinjaEquipment.Remove(SelectedEquipment);
-            
             BuyMessage = "Item sold!";
+            
         }
 
         public void BuyEquipment()
@@ -119,16 +132,6 @@ namespace Eindopdracht.ViewModel
                 
                 Ninja.Currency -= SelectedEquipment.Price;
                 NinjaEquipment.Add(SelectedEquipment);
-                
-                InventoryViewModel inventory = new InventoryViewModel(SelectedEquipment.Id, Ninja.Id);
-                using (var context = new EntitiesEntities1())
-                {
-                    Random ran = new Random();
-                    Inventory row = (Inventory)inventory.ToModel();
-                    row.Id = ran.Next(1,1000000000);
-                    context.Inventories.Add(row);
-                    context.SaveChanges();
-                }
                 BuyMessage = "Equipment Purchased!";
 
             }
@@ -146,7 +149,6 @@ namespace Eindopdracht.ViewModel
 
         private List<EquipmentViewModel> ChangeEquipment()
         {
-            ShowEquipment = EquipmentList.Equipments.Where(e => e.Category == SelectedCategory.Name).ToList();
             return ShowEquipment;
         }
 

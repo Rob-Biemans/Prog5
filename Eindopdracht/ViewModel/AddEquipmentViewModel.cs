@@ -25,7 +25,7 @@ namespace Eindopdracht.ViewModel
 
         private void AddEquipment(AddEquipmentWindow window)
         {
-            using (var context = new EntitiesEntities1())
+            using (var context = new Entities())
             {
                 context.Equipments.Add((Equipment)Equipment.ToModel());
                 context.SaveChanges();

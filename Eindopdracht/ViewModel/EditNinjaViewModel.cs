@@ -20,7 +20,7 @@ namespace Eindopdracht.ViewModel
 
         private void Save(EditNinjaWindow window)
         {
-            using (var context = new EntitiesEntities1())
+            using (var context = new Entities())
             {
                 var ninja = Ninja.ToModel();
 

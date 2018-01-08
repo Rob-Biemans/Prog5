@@ -10,6 +10,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using Eindopdracht.View;
 using System.Data.Entity;
+using Eindopdracht.Repositories;
 
 namespace Eindopdracht.ViewModel
 {
@@ -20,6 +21,7 @@ namespace Eindopdracht.ViewModel
         public ObservableCollection<NinjaViewModel> Ninjas { get; set; }
 
         private NinjaViewModel _selectedNinja;
+        private NinjaRepository _ninjaRepository;
 
         public NinjaViewModel SelectedNinja
         {
@@ -41,11 +43,13 @@ namespace Eindopdracht.ViewModel
         public NinjaListViewModel()
         {
 
-            using (var context = new EntitiesEntities1())
-            {
-                var ninjas = context.Ninjas.ToList();
-                Ninjas = new ObservableCollection<NinjaViewModel>(ninjas.Select(n => new NinjaViewModel(n)));
-            }
+            //using (var context = new Entities())
+            //{
+            //    var ninjas = context.Ninjas.ToList();
+            //    Ninjas = new ObservableCollection<NinjaViewModel>(ninjas.Select(n => new NinjaViewModel(n)));
+            //}
+            _ninjaRepository = new NinjaRepository();
+            Ninjas = new ObservableCollection<NinjaViewModel>(_ninjaRepository.GetNinjas());
 
             ShowAddNinjaCommand = new RelayCommand(ShowAddNinja, CanShowAddNinja);
             DeleteNinjaCommand = new RelayCommand(DeleteNinja);
@@ -58,7 +62,7 @@ namespace Eindopdracht.ViewModel
         public void OnChangeCollection()
         {
             Ninjas.Clear();
-            using (var context = new EntitiesEntities1())
+            using (var context = new Entities())
             {
                 context.Ninjas.ToList().ForEach(n => Ninjas.Add(new NinjaViewModel(n, this)));
             }
@@ -82,7 +86,7 @@ namespace Eindopdracht.ViewModel
 
         private void DeleteNinja()
         {
-            using (var context = new EntitiesEntities1())
+            using (var context = new Entities())
             {
                 var ninja = (Ninja)_selectedNinja.ToModel();
 

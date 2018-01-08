@@ -25,7 +25,7 @@ namespace Eindopdracht.ViewModel
 
         private void AddNinja(AddNinjaWindow window)
         {
-            using (var context = new EntitiesEntities1())
+            using (var context = new Entities())
             {
                 context.Ninjas.Add((Ninja)Ninja.ToModel());
                 context.SaveChanges();

@@ -39,7 +39,7 @@ namespace Eindopdracht.ViewModel
         public CategoryListViewModel()
         {
 
-            using (var context = new EntitiesEntities1())
+            using (var context = new Entities())
             {
                 var categories = context.Categories.ToList();
                 Categorys = new ObservableCollection<CategoryViewModel>(categories.Select(c => new CategoryViewModel(c)));
@@ -54,7 +54,7 @@ namespace Eindopdracht.ViewModel
         public void OnChangeCollection()
         {
             Categorys.Clear();
-            using (var context = new EntitiesEntities1())
+            using (var context = new Entities())
             {
                 context.Categories.ToList().ForEach(c => Categorys.Add(new CategoryViewModel(c, this)));
             }
@@ -73,7 +73,7 @@ namespace Eindopdracht.ViewModel
 
         private void DeleteCategory()
         {
-            using (var context = new EntitiesEntities1())
+            using (var context = new Entities())
             {
                 var category = (Category)_selectedCategory.ToModel();
 

@@ -24,7 +24,7 @@ namespace Eindopdracht.ViewModel
 
         private void AddCategory(AddCategoryWindow window)
         {
-            using (var context = new EntitiesEntities1())
+            using (var context = new Entities())
             {
                 context.Categories.Add((Category)Category.ToModel());
                 context.SaveChanges();

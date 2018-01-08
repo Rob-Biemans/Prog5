@@ -10,13 +10,9 @@ namespace Eindopdracht.Model
     {
         public List<Equipment> GetInventory(int ninjaId)
         {
-            using (var context = new EntitiesEntities1())
+            using (var context = new Entities())
             {
-                List<Inventory> inv = context.Inventories.ToList().Where(i => i.NinjaID == ninjaId).ToList();
                 List<Equipment> equipment = new List<Equipment>();
-                inv.ForEach(i => {
-                    equipment.Add(context.Equipments.Where(e => e.Id == i.EquipmentID).First());
-                });
                 return equipment;
             }
         }
@@ -24,7 +20,7 @@ namespace Eindopdracht.Model
 
         public List<Equipment> GetEquipments()
         {
-            using (var context = new EntitiesEntities1())
+            using (var context = new Entities())
             {
                 return context.Equipments.ToList();
             }

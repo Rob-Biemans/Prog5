@@ -174,9 +174,6 @@
     <Compile Include="Equipment.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Inventory.cs">
-      <DependentUpon>Entities.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\ICategoriesRepository.cs" />
     <Compile Include="Model\IEquipmentsRepository.cs" />
     <Compile Include="Model\INinjaRepository.cs" />
@@ -186,6 +183,7 @@
     <Compile Include="Ninja.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\NinjaRepository.cs" />
     <Compile Include="ViewModel\AddCategoryViewModel.cs" />
     <Compile Include="ViewModel\AddEquipmentViewModel.cs" />
     <Compile Include="ViewModel\AddNinjaViewModel.cs" />
@@ -196,7 +194,7 @@
     <Compile Include="ViewModel\EditNinjaViewModel.cs" />
     <Compile Include="ViewModel\EquipmentListViewModel.cs" />
     <Compile Include="ViewModel\EquipmentViewModel.cs" />
-    <Compile Include="ViewModel\InventoryViewModel.cs" />
+    <Compile Include="ViewModel\IObservableCollection.cs" />
     <Compile Include="ViewModel\NinjaListViewModel.cs" />
     <Compile Include="ViewModel\NinjaViewModel.cs" />
     <Compile Include="ViewModel\ShopViewModel.cs" />

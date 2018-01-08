@@ -41,8 +41,8 @@ namespace Eindopdracht.ViewModel
 
         public EquipmentListViewModel()
         {
-
-            using (var context = new EntitiesEntities1())
+            
+            using (var context = new Entities())
             {
                 var equipments = context.Equipments.ToList();
                 Equipments = new ObservableCollection<EquipmentViewModel>(equipments.Select(e => new EquipmentViewModel(e)));
@@ -57,10 +57,22 @@ namespace Eindopdracht.ViewModel
             ShowViewCategoriesCommand = new RelayCommand(ShowViewCategory, CanShowViewCategory);
         }
 
+        public EquipmentListViewModel(ICollection<EquipmentViewModel> equipment)
+        {
+            Equipments = new ObservableCollection<EquipmentViewModel>(equipment);
+            ShowAddEquipmentCommand = new RelayCommand(ShowAddEquipment, CanShowAddEquipment);
+            DeleteEquipmentCommand = new RelayCommand(DeleteEquipment);
+
+            ShowEditEquipmentCommand = new RelayCommand(ShowEditEquipment);
+            ShowViewEquipmentCommand = new RelayCommand(ShowViewEquipment);
+
+            ShowViewCategoriesCommand = new RelayCommand(ShowViewCategory, CanShowViewCategory);
+        }
+
         public void OnChangeCollection()
         {
             Equipments.Clear();
-            using (var context = new EntitiesEntities1())
+            using (var context = new Entities())
             {
                 context.Equipments.ToList().ForEach(e => Equipments.Add(new EquipmentViewModel(e, this)));
             }
@@ -90,7 +102,7 @@ namespace Eindopdracht.ViewModel
 
         private void DeleteEquipment()
         {
-            using (var context = new EntitiesEntities1())
+            using (var context = new Entities())
             {
                 var equipment = (Equipment)_selectedEquipment.ToModel();
 

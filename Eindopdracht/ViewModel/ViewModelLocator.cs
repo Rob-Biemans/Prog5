@@ -21,7 +21,7 @@ namespace Eindopdracht.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register<NinjaListViewModel>();
-            SimpleIoc.Default.Register<EquipmentListViewModel>();
+            //SimpleIoc.Default.Register<EquipmentListViewModel>();
             SimpleIoc.Default.Register<CategoryListViewModel>();
         }
 

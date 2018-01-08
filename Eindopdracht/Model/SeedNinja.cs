@@ -11,7 +11,7 @@ namespace Eindopdracht.Model
         public List<Ninja> GetNinjas()
         {
 
-            using (var context = new EntitiesEntities1())
+            using (var context = new Entities())
             {
                 return context.Ninjas.ToList();
             }
@@ -23,6 +23,11 @@ namespace Eindopdracht.Model
             //ninjas.Add(new Ninja { Id = 4, Name = "Ethiopie", Currency = 10000 });
 
             //return ninjas;
+        }
+
+        ICollection<Ninja> INinjaRepository.GetNinjas()
+        {
+            throw new NotImplementedException();
         }
     }
 }

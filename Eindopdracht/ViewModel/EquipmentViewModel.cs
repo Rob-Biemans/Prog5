@@ -18,10 +18,21 @@ namespace Eindopdracht.Model
             set { _equipment.Id = value; RaisePropertyChanged("Id"); }
         }
 
-        public string Category
+        public Category Category
         {
             get { return _equipment.Category; }
             set { _equipment.Category = value; RaisePropertyChanged("Category"); }
+        }
+
+        public Equipment GetModel()
+        {
+            return _equipment;
+        }
+
+        public int CategoryID
+        {
+            get { return _equipment.CategoryID; }
+            set { _equipment.CategoryID = value; }
         }
 
         public string Name

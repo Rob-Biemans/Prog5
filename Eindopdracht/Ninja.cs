@@ -14,10 +14,17 @@ namespace Eindopdracht
     
     public partial class Ninja
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Ninja()
+        {
+            this.Equipments = new HashSet<Equipment>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public int Currency { get; set; }
-        public int InventoryID { get; set; }
-        public List<Equipment> Inventory { get; internal set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Equipment> Equipments { get; set; }
     }
 }

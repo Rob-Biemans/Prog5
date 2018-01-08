@@ -13,10 +13,10 @@ namespace Eindopdracht
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EntitiesEntities1 : DbContext
+    public partial class Entities : DbContext
     {
-        public EntitiesEntities1()
-            : base("name=EntitiesEntities1")
+        public Entities()
+            : base("name=Entities")
         {
         }
     
@@ -25,9 +25,8 @@ namespace Eindopdracht
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Ninja> Ninjas { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Equipment> Equipments { get; set; }
-        public virtual DbSet<Ninja> Ninjas { get; set; }
-        public virtual DbSet<Inventory> Inventories { get; set; }
     }
 }

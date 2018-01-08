@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'E:\Rob\Dropbox\Prive van rob\School\HBO\2e leerjaar\PROG5\Prog5\Eindopdracht\Entities.edmx'. 
+﻿// T4 code generation is enabled for model 'X:\school\semester 7\Prog5\Eindopdracht\Entities.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

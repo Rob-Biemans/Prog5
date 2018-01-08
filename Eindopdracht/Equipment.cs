@@ -14,12 +14,22 @@ namespace Eindopdracht
     
     public partial class Equipment
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Equipment()
+        {
+            this.Ninjas = new HashSet<Ninja>();
+        }
+    
         public int Id { get; set; }
-        public string Category { get; set; }
         public string Name { get; set; }
         public int Price { get; set; }
         public int Agility { get; set; }
         public int Strenght { get; set; }
         public int Intelligence { get; set; }
+        public int CategoryID { get; set; }
+    
+        public virtual Category Category { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Ninja> Ninjas { get; set; }
     }
 }

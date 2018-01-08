@@ -8,6 +8,6 @@ namespace Eindopdracht.Model
 {
     interface INinjaRepository
     {
-        List<Ninja> GetNinjas();
+        ICollection<Ninja> GetNinjas();
     }
 }
