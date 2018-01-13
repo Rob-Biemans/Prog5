@@ -41,7 +41,7 @@ namespace Eindopdracht.Model
             set { _equipment.Name = value; RaisePropertyChanged("Name"); }
         }
 
-        internal object ToModel()
+        public Equipment ToModel()
         {
             return _equipment;
         }

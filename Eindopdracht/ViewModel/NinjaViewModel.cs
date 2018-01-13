@@ -130,6 +130,7 @@ namespace Eindopdracht.Model
 
         public void SellEquipment(EquipmentViewModel selectedEquipment)
         {
+            Inventory.Remove(Inventory.Where(e => e.Id == selectedEquipment.Id).First());
             Agility = CalculateAgility();
             Intelligence = CalculateIntelligence();
             Strength = CalculateStrength();
