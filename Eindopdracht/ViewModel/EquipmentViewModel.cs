@@ -20,7 +20,7 @@ namespace Eindopdracht.Model
 
         public Category Category
         {
-            get { return _equipment.Category; }
+            get { return GetCategory(); }
             set { _equipment.Category = value; RaisePropertyChanged("Category"); }
         }
 
@@ -87,5 +87,14 @@ namespace Eindopdracht.Model
             _equipmentlist = equipmentlist;
         }
 
+        public Category GetCategory()
+        {
+            Category category;
+            using (var context = new Entities())
+            {
+                category = context.Categories.Find(_equipment.CategoryID);
+            }
+            return category;
+        }
     }
 }
