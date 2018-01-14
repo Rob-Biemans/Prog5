@@ -12,7 +12,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="#" Binding="{Binding Id}" Foreground="#FF1D1616" />
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Foreground="#FF1D1616" Width="*" />
-                <DataGridTextColumn Header="Category" Binding="{Binding Category}" Foreground="#FF1D1616" Width="*" />
+                <DataGridTextColumn Header="Category" Binding="{Binding Category.Name}" Foreground="#FF1D1616" Width="*" />
                 <DataGridTextColumn Header="Agility" Binding="{Binding Agility}" Foreground="#FF1D1616" Width="*" />
                 <DataGridTextColumn Header="Strength" Binding="{Binding Strenght}" Foreground="#FF1D1616" Width="*" />
                 <DataGridTextColumn Header="Intelligence" Binding="{Binding Intelligence}" Foreground="#FF1D1616" Width="*" />

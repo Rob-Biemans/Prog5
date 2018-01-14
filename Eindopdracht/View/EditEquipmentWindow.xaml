@@ -20,7 +20,7 @@
             <TextBox Text="{Binding Equipment.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
 
             <TextBlock Text="Category:" Margin="0,5,0,0"  />
-            <ComboBox SelectedValue="{Binding Equipment.Category, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Categories}"></ComboBox>
+            <ComboBox SelectedValue="{Binding SelectedCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Categories}"></ComboBox>
 
             <TextBlock Text="Prijs:" Margin="0,5,0,0"  />
             <TextBox Text="{Binding Equipment.Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />

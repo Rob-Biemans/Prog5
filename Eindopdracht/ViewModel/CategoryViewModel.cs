@@ -40,7 +40,7 @@ namespace Eindopdracht.ViewModel
             _category = category;
         }
 
-        internal object ToModel()
+        public Category ToModel()
         {
             return _category;
         }
