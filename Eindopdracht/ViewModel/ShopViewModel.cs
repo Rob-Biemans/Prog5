@@ -105,13 +105,13 @@ namespace Eindopdracht.ViewModel
             
             if (SelectedEquipment == null)
                 return;
-                
 
             using (var context = new Entities())
             {
                 var ninja = context.Ninjas.Find(Ninja.Id);
                 var eq = context.Equipments.Find(SelectedEquipment.Id);
                 ninja.Equipments.Remove(eq);
+                ninja.Currency += SelectedEquipment.Price;
                 context.SaveChanges();
             }
             Ninja.Currency += SelectedEquipment.Price;
@@ -133,7 +133,7 @@ namespace Eindopdracht.ViewModel
                 Ninja.Currency -= SelectedEquipment.Price;
                 NinjaEquipment.Add(SelectedEquipment);
                 BuyMessage = "Equipment Purchased!";
-
+                
             }
             else
             {

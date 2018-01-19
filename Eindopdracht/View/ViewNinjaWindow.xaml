@@ -16,7 +16,7 @@
             <TextBlock Text="Name: " Margin="0,0,218,0" />
             <TextBlock x:Name="txtTitel" HorizontalAlignment="Left" Margin="50,10,0,0" TextWrapping="Wrap" Text="{Binding Ninja.Name, Mode=TwoWay}" VerticalAlignment="Top" FontSize="28"/>
 
-            <TextBlock Margin="0,5,0,0"  ><Run Text="Gear Value: "/><Run Text=" "/><InlineUIContainer>
+            <TextBlock Margin="0,5,0,0"  ><Run Text="Currency: "/><Run Text=" "/><InlineUIContainer>
                     <TextBlock Text="{Binding Ninja.Currency, Mode=TwoWay}" Margin="0,5,0,0"  Width="212"  />
                 </InlineUIContainer></TextBlock>
 

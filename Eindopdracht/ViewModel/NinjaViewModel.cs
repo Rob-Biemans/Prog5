@@ -115,11 +115,21 @@ namespace Eindopdracht.Model
 
         internal void SellAllEquipment()
         {
+            int newCurrency = 0;
+            Inventory.ToList().ForEach(i => newCurrency += i.Price);
             Inventory.Clear();
+            using (var context = new Entities())
+            {
+                var ninja = context.Ninjas.Find(_ninja.Id);
+                ninja.Currency += newCurrency;
+                context.SaveChanges();
+            }
+            Currency = Currency + newCurrency;
             Agility = CalculateAgility();
             Intelligence = CalculateIntelligence();
             Strength = CalculateStrength();
         }
+
 
         public int CalculateAgility()
         {
@@ -155,10 +165,11 @@ namespace Eindopdracht.Model
                 var ninja = context.Ninjas.Find(_ninja.Id);
                 var eq = context.Equipments.Find(equipment.Id);
                 ninja.Equipments.Add(eq);
+                ninja.Currency -= eq.Price;
                 context.SaveChanges();
             }
-
-                Agility = CalculateAgility();
+            _ninja.Equipments.Add(equipment.ToModel());
+            Agility = CalculateAgility();
             Intelligence = CalculateIntelligence();
             Strength = CalculateStrength();
         }
